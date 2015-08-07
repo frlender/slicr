@@ -2,6 +2,7 @@
 
 var Lich = angular.module('Lich', ['ngTagsInput','ngRoute']);
 
+var baseURL = window.location.origin+window.location.pathname;
 
 
 

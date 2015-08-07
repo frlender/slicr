@@ -11,12 +11,10 @@
     "jade":"1.9.1",
     "elasticsearch":"5.0.0",
     "archiver":"0.14.4",
-    "underscore":"latest"
+    "underscore":"latest",
+    "bower":"latest"
   },
-  "scripts": {
-    "postinstall": "bower install"
-	},
-  "devDependencies": {
+    "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jade": "^0.5.1",

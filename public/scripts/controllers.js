@@ -9,7 +9,7 @@ Lich.controller('index',['$scope','$http', '$location',
 		$location.path('/search');
 	}
 	$scope.loadTags = function(typed){
-		return $http.get('/tags?typed='+typed);
+		return $http.get(baseURL+'tags?typed='+typed);
 	}
 	$scope.isCheckoutView = function() {
 		 return $location.path() == '/checkout';
@@ -18,7 +18,7 @@ Lich.controller('index',['$scope','$http', '$location',
 		var phrase = $scope.tags.map(function(tag){
 			return tag.text;
 		}).join(' ');
-		$http.get('/search?typed='+phrase+'&from='+$scope.from+'&size='+$scope.size).then(function(res){
+		$http.get(baseURL+'search?typed='+phrase+'&from='+$scope.from+'&size='+$scope.size).then(function(res){
 			res.data.forEach(function(e){
 				if(e.cid in $scope.selectedItems)
 					e.__selected = true;
@@ -61,7 +61,7 @@ Lich.controller('index',['$scope','$http', '$location',
 }])
 .controller('checkout',['$scope','$http', 'download',
 	function($scope,$http,download){
-		$http.post('/selected',$scope.selectedItems).then(function(res){
+		$http.post(baseURL+'selected',$scope.selectedItems).then(function(res){
 			$scope.items = res.data
 		});
 

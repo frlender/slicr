@@ -10,13 +10,13 @@ console.log(genes.length)
 
 
 var client = new elasticsearch.Client({
-  host: '10.91.53.79:9200',
+  host: '146.203.54.158:31000',
   log: 'trace'
 });
 
 exports.suggest = function(req,res){
 	client.search({
-  	index: 'l1000-2',
+  	index: 'l1000',
   	type: 'suggest',
   	body: {
     	query: {
@@ -40,7 +40,7 @@ exports.suggest = function(req,res){
 
 exports.search = function(req,res){
 	client.search({
-  	index: 'l1000-2',
+  	index: 'l1000',
   	type: 'leve34',
   	body: {
       from:req.query.from,
