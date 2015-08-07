@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Lich">
+  <head>
+    <title> </title>
+    <link rel="shortcut icon" href="css/images/?.ico" type="image/x-icon">
+    <!--style-->
+    <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="libraries/ng-tags-input/ng-tags-input.min.css">
+    <!-- libraries -->
+    <script src="libraries/jquery/jquery.min.js"></script>
+    <script src="libraries/string/lib/string.min.js"></script>
+    <script src="libraries/underscore/underscore-min.js"></script>
+    <script src="libraries/angular/angular.js"></script>
+    <script src="libraries/angular-route/angular-route.min.js">    </script>
+    <script src="libraries/ng-tags-input/ng-tags-input.min.js"></script>
+    <!-- scripts-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js">  </script>
+    <script src="scripts/services.js"></script>
+  </head>
+  <body ng-controller="index"><img src="css/img/lich.jpg" class="lich"><span><span class="header">Lich</span>   <span class="sub-header">LINCS L1000 Search</span></span><a ng-if="selectedCount&gt;0" href="#/checkout" class="checkout">          checkout {{selectedCount}}</a>
+    <div>
+      <tags-input ng-model="tags" min-length="2" class="search-box">
+        <auto-complete min-length="2" source="loadTags($query)"></auto-complete>
+      </tags-input><a ng-click="search()" href="#/search" class="search">Search                  </a>
+    </div>
+    <div ng-view class="view"></div>
+  </body>
+</html>

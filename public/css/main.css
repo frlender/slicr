@@ -1,0 +1,27 @@
+.header{
+	font-size: 3em;
+}
+
+.sub-header{
+	font-style: italic;
+    margin-left: 0.8em;
+}
+
+.lich{
+	width:80px;
+	vertical-align: -100%;
+}
+
+.search-box{
+	width:600px;
+	display: inline-block;
+}
+
+.search{
+	vertical-align: 50%;
+    margin-left: 1em;
+}
+
+.checkout{
+	margin-left:8em;
+}
