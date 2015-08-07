@@ -22,11 +22,12 @@ html(lang='en', ng-app='Lich')
     script(src='scripts/services.js')
 
   body(ng-controller='index')
-    img(src="css/img/lich.jpg" class="lich")
-    span <span class="header">Lich</span>   <span class="sub-header">LINCS L1000 Search</span>
-    a(ng-if="selectedCount>0" href="#/checkout" class="checkout")           checkout {{selectedCount}}
+    img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
+    span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search</span>
+    a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
+    a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
     div
-        tags-input(ng-model="tags" min-length=2 class="search-box")
+        tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
             auto-complete(min-length=2 source="loadTags($query)")
-        a(ng-click="search()" href="#/search" class="search") Search                  
+        a(ng-click="from=0;search()" href="#/search" class="search") Search                  
     div(ng-view class="view")

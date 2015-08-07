@@ -1,5 +1,6 @@
 .header{
 	font-size: 3em;
+	cursor: pointer;
 }
 
 .sub-header{
@@ -10,6 +11,7 @@
 .lich{
 	width:80px;
 	vertical-align: -100%;
+	cursor: pointer;
 }
 
 .search-box{
@@ -22,6 +24,25 @@
     margin-left: 1em;
 }
 
+.back{
+	margin-left: 7em;
+	text-decoration: none;
+}
+
 .checkout{
-	margin-left:8em;
+	margin-left:1em;
+}
+
+.previous{
+	margin-right:1em;
+}
+
+a{
+	text-decoration: underline;
+	color:navy;
+	cursor:pointer;
+}
+a.hover{
+	text-decoration: underline;
+	color:blue;
 }

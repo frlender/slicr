@@ -1,3 +1,3 @@
-div <a ng-click="download()"> Download </a> 
+div <a ng-click="download()"> Download </a>
 div(ng-repeat="item in items" ng-if="item.__selected!=false") {{item.batch}}, {{item.SM_Name}}, {{item.SM_Dose+item.SM_Dose_unit}} 
 	a(ng-click="remove(item)") Remove

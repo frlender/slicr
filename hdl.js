@@ -10,7 +10,7 @@ console.log(genes.length)
 
 
 var client = new elasticsearch.Client({
-  host: 'localhost:9200',
+  host: '10.91.53.79:9200',
   log: 'trace'
 });
 
@@ -43,10 +43,12 @@ exports.search = function(req,res){
   	index: 'l1000-2',
   	type: 'leve34',
   	body: {
+      from:req.query.from,
+      size:req.query.size,
     	query: {
       		match:{
       			_all:req.query.typed
-      		} 
+      		}
     	}
   	}
 	}).then(function (resp) {

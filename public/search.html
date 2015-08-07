@@ -1,2 +1,3 @@
 
-<div ng-repeat="item in items">{{item.batch}}, {{item.pert}}, {{item.dose}} <input ng-model="item.__selected" type="checkbox" ng-change="changeSelected(item)"></iput></div>
+<div ng-repeat="item in items">{{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="changeSelected(item)"></iput></div>
+<div><a ng-style="{opacity: from&gt;=size?1:0}" ng-click="previous()" class="previous">previous</a><a ng-if="items&amp;&amp;items.length&gt;0" ng-click="next()" class="next">next</a></div>

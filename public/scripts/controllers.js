@@ -3,14 +3,22 @@ Lich.controller('index',['$scope','$http', '$location',
 	$scope.tags = [
 
 	];
+	$scope.from = 0;
+	$scope.size = 15;
+	$scope.toDefautView = function(){
+		$location.path('/search');
+	}
 	$scope.loadTags = function(typed){
 		return $http.get('/tags?typed='+typed);
+	}
+	$scope.isCheckoutView = function() {
+		 return $location.path() == '/checkout';
 	}
 	$scope.search = function(){
 		var phrase = $scope.tags.map(function(tag){
 			return tag.text;
 		}).join(' ');
-		$http.get('/search?typed='+phrase).then(function(res){
+		$http.get('/search?typed='+phrase+'&from='+$scope.from+'&size='+$scope.size).then(function(res){
 			res.data.forEach(function(e){
 				if(e.cid in $scope.selectedItems)
 					e.__selected = true;
@@ -19,6 +27,14 @@ Lich.controller('index',['$scope','$http', '$location',
 			})
 			$scope.items = res.data;
 		});
+	}
+	$scope.previous = function(){
+		$scope.from = $scope.from-$scope.size;
+		$scope.search();
+	}
+	$scope.next = function(){
+		$scope.from = $scope.from+$scope.size;
+		$scope.search();
 	}
 	$scope.selectedItems = {};
 	$scope.selectedCount = 0;
@@ -48,13 +64,12 @@ Lich.controller('index',['$scope','$http', '$location',
 		$http.post('/selected',$scope.selectedItems).then(function(res){
 			$scope.items = res.data
 		});
-		
+
 	$scope.download = function(){
 		download($scope.selectedItems);
 	}
 	$scope.remove = function(item){
 		delete $scope.selectedItems[item.cid];
 		item.__selected = false;
-	}	
+	}
 }]);
-
