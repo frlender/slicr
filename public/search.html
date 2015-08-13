@@ -1,3 +1,6 @@
 
-<div ng-repeat="item in items">{{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="changeSelected(item)"></iput></div>
-<div><a ng-style="{opacity: from&gt;=size?1:0}" ng-click="previous()" class="previous">previous</a><a ng-if="items&amp;&amp;items.length&gt;0" ng-click="next()" class="next">next</a></div>
+<div ng-if="type.items&amp;&amp;type.items.length&gt;0" ng-repeat="type in types" ng-style="{'margin-left': $index&gt;0?'3em':'0em'}" class="col">
+  <div><strong>{{type.name}}</strong></div>
+  <div ng-repeat="item in type.items">{{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="type.toggleSelected(item)"></iput></div>
+  <div><a ng-style="{opacity: type.from&gt;=type.size?1:0}" ng-click="previous(type)" class="previous">previous</a><a ng-click="next(type)" class="next">next</a></div>
+</div>

@@ -49,6 +49,14 @@ module.exports = function(grunt) {
         }
       }
     },
+    env:{
+      dev:{
+        NODE_ENV:"dev"
+      },
+      product:{
+        NODE_ENV:"product"
+      }
+    },
     express:{
       dev:{
         options:{
@@ -63,8 +71,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-env');
 
-  grunt.registerTask('default', ['express:dev','watch']);
+  grunt.registerTask('default', ['env:dev','express:dev','watch']);
   grunt.registerTask('release',['jade:release','uglify']);
 
 };

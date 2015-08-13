@@ -1,3 +1,7 @@
 
-<div><a ng-click="download()"> Download </a></div>
-<div ng-repeat="item in items" ng-if="item.__selected!=false">{{item.batch}}, {{item.SM_Name}}, {{item.SM_Dose+item.SM_Dose_unit}} <a ng-click="remove(item)">Remove</a></div>
+<div class="download"><a ng-click="download()"> Download </a> </div>
+<!-- add filter rather than using ng-if-->
+<div ng-repeat="type in types | filter:hasSelected" ng-style="{'margin-left': $index&gt;0?'3em':'0em'}" class="col">
+  <div><strong>{{type.name}}</strong></div>
+  <div ng-repeat="(key,item) in type.selectedItems">{{item.batch}}, {{item.pert}}{{item.dose?(", "+item.dose):''}}                     <a ng-click="type.remove(item)">Remove</a></div>
+</div>

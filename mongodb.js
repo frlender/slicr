@@ -1,25 +1,27 @@
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://10.91.53.225/LINCS_L1000_LJP2015");
+var config = require('config');
+var Q = require('q');
+var registry = require('./registry.js');
 
-var Schema = mongoose.Schema({"CL_Name":String,"SM_Dose":Number,
-    "SM_Name":String,"SM_Dose_Unit":String,"SM_Time":Number,"cid":String,
-    "SM_Time_Unit":String,"vector":Array},{collection:"data"});
-var Level3 = mongoose.model('Level3',Schema);
+mongoose.connect(config.get('dbUrl'));
 
+var models = {};
 
-exports.selected = function(cids,callback){
-	var query = Level3.find({cid:{$in:cids}}).select({vector:false})
-		.lean().exec(function(err,docs){
-        if(err) throw err;
-       		callback(docs);
-    }); 
+for(var key in registry){
+  var level = registry[key];
+  var Schema = mongoose.Schema(level.mongodb.schema,{collection:level.mongodb.collection});
+  models[key] = mongoose.model(key,Schema);
 }
 
-exports.download = function(cids,callback){
-	console.log(cids);
-	var query = Level3.find({cid:{$in:cids}})
+
+exports.download = function(input){
+  var deferred = Q.defer();
+  var findQuery = {};
+  findQuery[input.itemId] = {$in:input.selectedIds};
+	var query = models[input.model].find(findQuery)
 		.lean().exec(function(err,docs){
-        if(err) throw err;
-       		callback(docs);
+        if(err) deferred.reject(err);
+        else deferred.resolve(docs);
     }); 
+    return deferred.promise;
 }

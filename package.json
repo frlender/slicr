@@ -12,7 +12,11 @@
     "elasticsearch":"5.0.0",
     "archiver":"0.14.4",
     "underscore":"latest",
-    "bower":"latest"
+    "bower":"latest",
+     "grunt-env":"0.4.4",
+    "grunt-run":"0.3.0",
+    "config":"1.14.0",
+    "q":"1.4.1"
   },
     "devDependencies": {
     "grunt": "^0.4.5",

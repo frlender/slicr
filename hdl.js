@@ -2,21 +2,19 @@ var elasticsearch = require('elasticsearch');
 var mongo = require('./mongodb.js');
 var fs = require('fs');
 var archiver = require('archiver');
-var _ = require('underscore');
-
-var genes = fs.readFileSync('data/GEOgenes.json');
-genes = JSON.parse(genes);
-console.log(genes.length)
+var config = require('config');
+var Q = require('q');
+var registry = require('./registry.js');
 
 
 var client = new elasticsearch.Client({
-  host: '146.203.54.158:31000',
+  host: config['esUrl'],
   log: 'trace'
 });
 
 exports.suggest = function(req,res){
 	client.search({
-  	index: 'l1000',
+  	index: config['esIndex'],
   	type: 'suggest',
   	body: {
     	query: {
@@ -40,8 +38,8 @@ exports.suggest = function(req,res){
 
 exports.search = function(req,res){
 	client.search({
-  	index: 'l1000',
-  	type: 'leve34',
+  	index: config['esIndex'],
+  	type: registry[req.query.type].type,
   	body: {
       from:req.query.from,
       size:req.query.size,
@@ -62,49 +60,23 @@ exports.search = function(req,res){
 	});
 }
 
-exports.selected = function(req,res){
-    var cids = Object.keys(req.body);
-	mongo.selected(cids,function(docs){
-		res.send(docs);
-	});
-}
 
 
 exports.download = function(req,res){
-	console.log(req.body);
-	var cids = Object.keys(JSON.parse(req.body.cids));
-	var archive = archiver('zip');
-	mongo.download(cids,function(docs){
-		// meta ssfile
-		var metaHeaders =  ["cid", "CL_Name", "det_plate", "det_well", "SM_Dose", "SM_Dose_Unit", "SM_LINCS_ID", "SM_Name", "SM_Center_Compound_ID", "SM_Time", "SM_Time_Unit", "SM_Pert_Type", "batch"];
-		var meta = [];
-		var mat = [];
-		var matHeader = [];
-		matHeader.push('');
-		var delim = ',';
-		meta.push(metaHeaders.join(delim));
-		docs.forEach(function(doc,i){
-			var docArr = [];
-			metaHeaders.forEach(function(key){
-				if(key in doc)
-					docArr.push(doc[key]);
-				else
-					docArr.push('');
-			});
-			mat.push(doc.vector);
-			matHeader.push(doc.cid);
-			meta.push(docArr.join(delim));
-		});
-		archive.append(meta.join('\n'),{name:'meta.csv'});
+	var levels = JSON.parse(req.body.data);
+	var promises = levels.map(function(level){
+		var input = {};
+		input.model = level.id;
+		input.itemId = registry[level.id].itemId;
+		input.selectedIds = level.selectedIds;
+		return mongo.download(input);
+	});
 
-		// matrix file
-		mat = _.zip.apply(null,mat) // transpose;
-		var matFile = [];
-		matFile.push(matHeader.join(delim));
-		mat.forEach(function(row,i){
-			matFile.push(genes[i]+delim+row.join(delim));
+	var archive = archiver('zip');
+	Q.all(promises).then(function(docArr){
+		docArr.forEach(function(docs,i){
+			registry[levels[i].id].format(archive,docs);
 		});
-		archive.append(matFile.join('\n'),{name:'matrix.csv'});
 		archive.finalize();
 	});
 	res.attachment('Lich_data.zip');

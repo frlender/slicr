@@ -1,0 +1,9 @@
+{
+	"esUrl":"localhost:9200",
+	"dbUrl":"mongodb://10.91.53.225/LINCS_L1000_LJP2015",
+	"esIndex":"l1000-2",
+	"types":{
+		"level34":"leve34",
+		"level5":"level5"
+	}
+}

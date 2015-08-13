@@ -1,10 +1,35 @@
 Lich.controller('index',['$scope','$http', '$location',
 	function($scope,$http,$location){
 	$scope.tags = [
-
+		// {text:'A375'},
+		// {text:'3.33um'}
 	];
-	$scope.from = 0;
-	$scope.size = 15;
+	$scope.types = [
+		{id:"level34",
+	     name:"Level 3",
+	     itemIdKey:'cid'},
+		{id:'level5',
+		 name:'Level 5 (CD)',
+		 itemIdKey:'sig_id'}
+	];
+	$scope.selectedItems = {};
+	$scope.selectedCount = 0;
+	$scope.types.forEach(function(type,i){
+		type.selectedItems = {};
+		type.from = 0;
+		type.size = 15;
+		$scope.$watch(function(scope){return scope.types[i].selectedItems;},
+			function(newVal,oldVal){
+			$scope.selectedCount += Object.keys(newVal).length-Object.keys(oldVal).length;
+			if($scope.selectedCount==0 && $location.path() == '/checkout')
+				$location.path('/search');
+		},true);
+		type.toggleSelected = function(item){
+			if(item.__selected)type.selectedItems[item[type.itemIdKey]] = item
+			else
+				delete type.selectedItems[item[type.itemIdKey]]
+		}
+	});
 	$scope.toDefautView = function(){
 		$location.path('/search');
 	}
@@ -14,62 +39,71 @@ Lich.controller('index',['$scope','$http', '$location',
 	$scope.isCheckoutView = function() {
 		 return $location.path() == '/checkout';
 	}
-	$scope.search = function(){
+
+	$scope.singleSearch = function(type){
 		var phrase = $scope.tags.map(function(tag){
 			return tag.text;
 		}).join(' ');
-		$http.get(baseURL+'search?typed='+phrase+'&from='+$scope.from+'&size='+$scope.size).then(function(res){
-			res.data.forEach(function(e){
-				if(e.cid in $scope.selectedItems)
-					e.__selected = true;
-				else
-					e.__selected = false;
-			})
-			$scope.items = res.data;
+		$http.get(baseURL+'search?typed='+phrase+'&from='+type.from+
+				'&size='+type.size+'&type='+type.id).then(function(res){
+				res.data.forEach(function(e){
+					if(e[type.itemIdKey] in type.selectedItems)
+						e.__selected = true;
+					else
+						e.__selected = false;
+				})
+				type.items = res.data;
 		});
 	}
-	$scope.previous = function(){
-		$scope.from = $scope.from-$scope.size;
-		$scope.search();
+	$scope.search = function(){
+		$scope.types.forEach(function(type){
+			$scope.singleSearch(type);
+		});
 	}
-	$scope.next = function(){
-		$scope.from = $scope.from+$scope.size;
-		$scope.search();
+	$scope.previous = function(type){
+		if(type.from>0){
+			type.from = type.from-type.size;
+			$scope.singleSearch(type);
+		}
 	}
-	$scope.selectedItems = {};
-	$scope.selectedCount = 0;
-	$scope.$watch('selectedItems',function(newVal,oldVal){
-		$scope.selectedCount = Object.keys(newVal).length;
-		console.log($location.path());
-		if($scope.selectedCount==0 && $location.path() == '/checkout')
-			$location.path('/search');
-	},true);
-	$scope.changeSelected = function(item){
-		if(item.__selected)$scope.selectedItems[item.cid] = true
-		else
-			delete $scope.selectedItems[item.cid]
+	$scope.next = function(type){
+		type.from = type.from+type.size;
+		$scope.singleSearch(type);
 	}
+	$scope.isEmptyObj = function(object){ for(var i in object) { return false; } return true; }
+	$scope.hasSelected = function(type) {var object = type.selectedItems; return !$scope.isEmptyObj(object) }
 }])
 .controller('search',['$scope', function($scope){
-	if($scope.items)
-	$scope.items.forEach(function(e){
-				if(e.cid in $scope.selectedItems)
-					e.__selected = true;
-				else
-					e.__selected = false;
-    });
+	$scope.types.forEach(function(type){
+		if(type.items)
+		type.items.forEach(function(e){
+					if(e[type.itemIdKey] in type.selectedItems)
+						e.__selected = true;
+					else
+						e.__selected = false;
+    	});
+	});
 }])
 .controller('checkout',['$scope','$http', 'download',
 	function($scope,$http,download){
-		$http.post(baseURL+'selected',$scope.selectedItems).then(function(res){
-			$scope.items = res.data
-		});
+
+	$scope.types.forEach(function(type){
+		if(!('remove' in type)){
+			type.remove = function(item){
+				delete type.selectedItems[item[type.itemIdKey]];
+			}
+	   	}
+	});
 
 	$scope.download = function(){
-		download($scope.selectedItems);
-	}
-	$scope.remove = function(item){
-		delete $scope.selectedItems[item.cid];
-		item.__selected = false;
+		var selected = [];
+		$scope.types.forEach(function(type){
+			if($scope.hasSelected(type)){
+				var each = {id:type.id};
+				each.selectedIds = Object.keys(type.selectedItems);
+				selected.push(each)
+			}
+		})
+		download(selected);
 	}
 }]);

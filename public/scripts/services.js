@@ -6,7 +6,7 @@ Lich.factory('download',function(){
 
   		var listField = document.createElement('input');
   		listField.setAttribute('type', 'hidden');
-  		listField.setAttribute('name', 'cids');
+  		listField.setAttribute('name', 'data');
   		listField.setAttribute('value', JSON.stringify(data));
   		form.appendChild(listField);
 

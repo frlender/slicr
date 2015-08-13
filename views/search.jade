@@ -1,4 +1,6 @@
-div(ng-repeat="item in items") {{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="changeSelected(item)"></iput>
-div
-  a(ng-style="{opacity: from>=size?1:0}" ng-click="previous()" class="previous") previous
-  a(ng-if="items&&items.length>0" ng-click="next()" class="next") next
+div(ng-if="type.items&&type.items.length>0" ng-repeat="type in types" class='col' ng-style="{'margin-left': $index>0?'3em':'0em'}")
+	div <strong>{{type.name}}</strong>
+	div(ng-repeat="item in type.items") {{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="type.toggleSelected(item)"></iput>
+	div
+		a(ng-style="{opacity: type.from>=type.size?1:0}" ng-click="previous(type)" class="previous") previous
+		a(ng-click="next(type)" class="next") next
