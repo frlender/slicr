@@ -74,6 +74,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-env');
 
   grunt.registerTask('default', ['env:dev','express:dev','watch']);
+  grunt.registerTask('deploy', ['env:product','express:dev','watch']);
+
   grunt.registerTask('release',['jade:release','uglify']);
 
 };

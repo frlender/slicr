@@ -12,4 +12,4 @@ CMD git clone -b master http://readonly:systemsbiology@amp.pharm.mssm.edu/gitlab
 	&& npm install -g grunt-cli \
   && npm install -g bower \
 	&& bower -F install --allow-root \
-	&& grunt
+	&& grunt deploy

@@ -28,7 +28,6 @@ module.exports = {
 			matHeader.push('gene symbols');
 			var delim = ',';
 			meta.push(metaHeaders.join(delim));
-			console.log(53);
 			docs.forEach(function(doc,i){
 				var docArr = [];
 				metaHeaders.forEach(function(key){
@@ -42,7 +41,6 @@ module.exports = {
 				meta.push(docArr.join(delim));
 			});
 			archive.append(meta.join('\n'),{name:'level3_meta.csv'});
-			console.log('55');
 			// matrix file
 			mat = _.zip.apply(null,mat) // transpose;
 			var matFile = [];
@@ -50,9 +48,7 @@ module.exports = {
 			mat.forEach(function(row,i){
 				matFile.push(genes[i]+delim+row.join(delim));
 			});
-			console.log('522');
 			archive.append(matFile.join('\n'),{name:'level3_matrix.csv'});
-			console.log('558');
 		}
  	},
 	level5:{
