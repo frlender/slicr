@@ -19,7 +19,7 @@
     <script src="scripts/controllers.js">  </script>
     <script src="scripts/services.js"></script>
   </head>
-  <body ng-controller="index"><img src="css/img/lich.jpg" ng-click="toDefautView()" class="lich"><span><span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search</span></span><a ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back"><</a><a ng-if="selectedCount&gt;0" href="#/checkout" class="checkout">checkout {{selectedCount}}</a>
+  <body ng-controller="index"><img src="css/img/lich.jpg" ng-click="toDefautView()" class="lich"><span><span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span></span><a ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back"><</a><a ng-if="selectedCount&gt;0" href="#/checkout" class="checkout">checkout {{selectedCount}}</a>
     <div>
       <tags-input placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length="2" class="search-box">
         <auto-complete min-length="2" source="loadTags($query)"></auto-complete>

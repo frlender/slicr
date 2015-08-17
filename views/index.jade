@@ -23,7 +23,7 @@ html(lang='en', ng-app='Lich')
 
   body(ng-controller='index')
     img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
-    span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search</span>
+    span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
     a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
     a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
     div
