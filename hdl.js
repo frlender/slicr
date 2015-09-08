@@ -50,11 +50,13 @@ exports.search = function(req,res){
     	}
   	}
 	}).then(function (resp) {
-    	var hits = resp.hits.hits;
-    	res.send(hits.map(function(hit){
-    		var source = hit._source;
-    		return source
-    	}))
+      var resObj = {}
+    	resObj.hits = resp.hits.hits.map(function(hit){
+        var source = hit._source;
+        return source
+      });
+      resObj.count = resp.hits.total;
+    	res.send(resObj);
 	}, function (err) {
     	// console.trace(err.message);
 	});

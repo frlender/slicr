@@ -46,13 +46,14 @@ Lich.controller('index',['$scope','$http', '$location',
 		}).join(' ');
 		$http.get(baseURL+'search?typed='+phrase+'&from='+type.from+
 				'&size='+type.size+'&type='+type.id).then(function(res){
-				res.data.forEach(function(e){
+				res.data.hits.forEach(function(e){
 					if(e[type.itemIdKey] in type.selectedItems)
 						e.__selected = true;
 					else
 						e.__selected = false;
 				})
-				type.items = res.data;
+				type.items = res.data.hits;
+				$scope.count = res.data.count;
 		});
 	}
 	$scope.search = function(){

@@ -3,4 +3,4 @@ div(ng-if="type.items&&type.items.length>0" ng-repeat="type in types" class='col
 	div(ng-repeat="item in type.items") {{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="type.toggleSelected(item)"></iput>
 	div
 		a(ng-style="{opacity: type.from>=type.size?1:0}" ng-click="previous(type)" class="previous") previous
-		a(ng-click="next(type)" class="next") next
+		a(ng-if="(type.from+type.size)<count" ng-click="next(type)" class="next") next
