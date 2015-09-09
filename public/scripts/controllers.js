@@ -16,8 +16,10 @@ Lich.controller('index',['$scope','$http', '$location',
 	$scope.selectedCount = 0;
 	$scope.types.forEach(function(type,i){
 		type.selectedItems = {};
-		type.from = 0;
-		type.size = 15;
+		type.initFrom = 0;
+		type.initSize = 15;
+		type.from = type.initFrom;
+		type.size = type.initSize;
 		$scope.$watch(function(scope){return scope.types[i].selectedItems;},
 			function(newVal,oldVal){
 			$scope.selectedCount += Object.keys(newVal).length-Object.keys(oldVal).length;
@@ -58,6 +60,8 @@ Lich.controller('index',['$scope','$http', '$location',
 	}
 	$scope.search = function(){
 		$scope.types.forEach(function(type){
+			type.from=type.initFrom;
+			type.size = type.initSize;
 			$scope.singleSearch(type);
 		});
 	}
