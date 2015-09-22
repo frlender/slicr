@@ -5,6 +5,7 @@ body{
 .container{
 	display: table;
 	margin: 0 auto; 
+	/*min-width: 800px;*/
 }
 
 .header{
