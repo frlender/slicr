@@ -7,7 +7,9 @@ html(lang='en', ng-app='Lich')
     link(rel='stylesheet', href='libraries/font-awesome/css/font-awesome.min.css')
     //- link(rel='stylesheet', type='text/css', href='libraries/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='css/main.css')
-    link(rel='stylesheet',href='libraries/ng-tags-input/ng-tags-input.min.css')     
+    link(rel='stylesheet',href='libraries/ng-tags-input/ng-tags-input.min.css') 
+    link(rel='stylesheet',href='css/dcic.css')
+    link(href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css')    
     // libraries 
     script(src='libraries/jquery/jquery.min.js')
     script(src='libraries/string/lib/string.min.js')
@@ -22,12 +24,24 @@ html(lang='en', ng-app='Lich')
     script(src='scripts/services.js')
 
   body(ng-controller='index')
-    img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
-    span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
-    a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
-    a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
-    div
-        tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
-            auto-complete(min-length=2 source="loadTags($query)")
-        a(ng-click="from=0;search()" href="#/search" class="search") Search                  
-    div(ng-view class="view")
+    div.container
+        div.theme-color-dark
+            img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
+            span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
+            a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
+            a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
+        div
+            tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
+                auto-complete(min-length=2 source="loadTags($query)")
+            a(ng-click="from=0;search()" href="#/search" class="search") Search                  
+        div(ng-view class="view")
+        .footer.theme-color-dark
+            img.logo(src="css/img/DCIC_500x375_cropped.png")
+            span.title.logo-title
+                .bd2k BD2K-LINCS
+                div Data Coordination <br> Integrattion Center
+            span.title.lab-title
+                div Ma'ayan lab of computational system biology
+                div Icahn School of Medicine at Mount Sinai
+
+

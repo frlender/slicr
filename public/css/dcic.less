@@ -1,0 +1,84 @@
+/* colors */
+@color-white: #ffffff;
+@color-black: #000000;
+
+@color-lightgray: #f1f1f1;
+@color-gray: #dddddd;
+@color-darkgray: #888888;
+@color-charcoal: #222222;
+@color-lightcharcoal: #808080;
+
+/* Logo and accent colors */
+@color-primary: #3593b1;
+@color-primary-light: #599fb7;
+@color-primary-dark: #09505b;
+
+@color-accent: #D16291;
+/* Unused! */
+@color-accent-dark: #9A2254;
+
+/* fonts */
+@font-size-base: 13px;
+@font-family-base: 'Arial', sans-serif;
+@font-family-accent: 'Archivo Narrow', sans-serif;
+@font-kerning-small: .1em;
+@font-kerning-big: .2em;
+
+
+@border-color:#bbb;s
+
+
+.theme-color{
+	color:@color-primary;
+}
+
+.theme-color-dark{
+	color:@color-primary-dark;
+	font-family: @font-family-base;
+}
+
+body{
+	font-family: @font-family-base;
+}
+
+.sub-header{
+	font-family: @font-family-accent;
+}
+
+
+.footer{
+	position: absolute;
+    bottom: 0;
+    height: 100px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: @border-color;
+
+}
+
+.logo{
+	width: 100px;
+    margin-top: 15px;
+}
+
+.title{
+	display:inline-block;
+}
+
+.logo-title{
+	
+	vertical-align:60%;
+	margin-left:10px;
+}
+
+.bd2k{
+	color:#808080;
+	font-size:0.8em;
+}
+
+.lab-title{
+	vertical-align: 140%;
+    font-size: 0.85em;
+    margin-left: 20px;
+    padding-right: 30px;
+}

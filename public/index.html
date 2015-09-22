@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="libraries/ng-tags-input/ng-tags-input.min.css">
+    <link rel="stylesheet" href="css/dcic.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow" rel="stylesheet" type="text/css">
     <!-- libraries -->
     <script src="libraries/jquery/jquery.min.js"></script>
     <script src="libraries/string/lib/string.min.js"></script>
@@ -19,12 +21,20 @@
     <script src="scripts/controllers.js">  </script>
     <script src="scripts/services.js"></script>
   </head>
-  <body ng-controller="index"><img src="css/img/lich.jpg" ng-click="toDefautView()" class="lich"><span><span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span></span><a ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back"><</a><a ng-if="selectedCount&gt;0" href="#/checkout" class="checkout">checkout {{selectedCount}}</a>
-    <div>
-      <tags-input placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length="2" class="search-box">
-        <auto-complete min-length="2" source="loadTags($query)"></auto-complete>
-      </tags-input><a ng-click="from=0;search()" href="#/search" class="search">Search                  </a>
+  <body ng-controller="index">
+    <div class="container">
+      <div class="theme-color-dark"><img src="css/img/lich.jpg" ng-click="toDefautView()" class="lich"><span><span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span></span><a ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back"><</a><a ng-if="selectedCount&gt;0" href="#/checkout" class="checkout">checkout {{selectedCount}}</a></div>
+      <div>
+        <tags-input placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length="2" class="search-box">
+          <auto-complete min-length="2" source="loadTags($query)"></auto-complete>
+        </tags-input><a ng-click="from=0;search()" href="#/search" class="search">Search                  </a>
+      </div>
+      <div ng-view class="view"></div>
+      <div class="footer theme-color-dark"><img src="css/img/DCIC_500x375_cropped.png" class="logo"><span class="title logo-title">
+          <div class="bd2k">BD2K-LINCS</div>
+          <div>Data Coordination <br> Integrattion Center</div></span><span class="title lab-title">
+          <div>Ma'ayan lab of computational system biology</div>
+          <div>Icahn School of Medicine at Mount Sinai</div></span></div>
     </div>
-    <div ng-view class="view"></div>
   </body>
 </html>

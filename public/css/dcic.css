@@ -1,0 +1,46 @@
+/* colors */
+/* Logo and accent colors */
+/* Unused! */
+/* fonts */
+s .theme-color {
+  color: #3593b1;
+}
+.theme-color-dark {
+  color: #09505b;
+  font-family: 'Arial', sans-serif;
+}
+body {
+  font-family: 'Arial', sans-serif;
+}
+.sub-header {
+  font-family: 'Archivo Narrow', sans-serif;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #bbbbbb;
+}
+.logo {
+  width: 100px;
+  margin-top: 15px;
+}
+.title {
+  display: inline-block;
+}
+.logo-title {
+  vertical-align: 60%;
+  margin-left: 10px;
+}
+.bd2k {
+  color: #808080;
+  font-size: 0.8em;
+}
+.lab-title {
+  vertical-align: 140%;
+  font-size: 0.85em;
+  margin-left: 20px;
+  padding-right: 30px;
+}

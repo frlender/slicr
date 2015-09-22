@@ -31,6 +31,10 @@ module.exports = function(grunt) {
       "jade:compile":{
         files:["views/*.jade"],
         tasks:["jade:compile"]
+      },
+      "less:development":{
+        files:["public/css/*.less"],
+        tasks:["less:development"]
       }
     },
     // concat:{
@@ -63,6 +67,16 @@ module.exports = function(grunt) {
           script:'index.js'
         }
       }
+    },
+    less:{
+      development:{
+        options:{
+          paths:['public/css']
+        },
+        files:{
+          "public/css/dcic.css":"public/css/dcic.less"
+        }
+      }
     }
   });
 
@@ -72,6 +86,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   grunt.registerTask('default', ['env:dev','express:dev','watch']);
   grunt.registerTask('deploy', ['env:product','express:dev','watch']);
