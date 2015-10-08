@@ -51,3 +51,28 @@ body {
 a {
   color: #3593b1;
 }
+a.dcic-link {
+  color: #09505b;
+}
+a.more-apps {
+  vertical-align: 190%;
+  font-size: 0.9em;
+}
+
+.manual{
+  white-space: normal;
+  font-size: 13px;
+  text-align: justify;
+}
+
+.fig{
+      border: solid;
+    border-width: thin;
+    border-color: #bbb;
+    padding: 5px;
+    width:650px;
+}
+
+/*.first-line{
+  font-size:15px;
+}*/
