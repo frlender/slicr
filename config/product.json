@@ -1,5 +1,5 @@
 {
-	"esUrl":"http://helen/es",
+	"esUrl":"http://146.203.54.71/es",
 	"dbUrl":"mongodb://10.91.53.225/LINCS_L1000_LJP2015",
 	"esIndex":"l1000",
 	"types":{
