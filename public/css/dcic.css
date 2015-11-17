@@ -2,7 +2,7 @@
 /* Logo and accent colors */
 /* Unused! */
 /* fonts */
-s .theme-color {
+.theme-color {
   color: #3593b1;
 }
 .theme-color-dark {
@@ -12,13 +12,34 @@ s .theme-color {
 body {
   font-family: 'Arial', sans-serif;
 }
+.search-bar {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-content: center;
+}
+.search-bar > * {
+  margin: auto;
+}
 .sub-header {
   font-family: 'Archivo Narrow', sans-serif;
 }
+html {
+  position: relative;
+  min-height: 100%;
+}
 .footer {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   height: 100px;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-content: center;
+}
+.footer-wrapper {
+  width: 677px;
   border-top-width: 1px;
   border-top-style: solid;
   border-top-color: #bbbbbb;
@@ -45,8 +66,17 @@ body {
   padding-right: 30px;
 }
 .view {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 110px;
+  flex-wrap: wrap;
+}
+.manual {
   width: 667px;
-  white-space: nowrap;
+  text-align: justify;
+  font-size: 13px;
 }
 a {
   color: #3593b1;
@@ -58,21 +88,14 @@ a.more-apps {
   vertical-align: 190%;
   font-size: 0.9em;
 }
-
-.manual{
-  white-space: normal;
-  font-size: 13px;
-  text-align: justify;
+.fig {
+  border: solid;
+  border-width: thin;
+  border-color: #bbb;
+  padding: 5px;
+  width: 650px;
 }
-
-.fig{
-      border: solid;
-    border-width: thin;
-    border-color: #bbb;
-    padding: 5px;
-    width:650px;
+.download {
+  flex: 1 100%;
+  text-align: center;
 }
-
-/*.first-line{
-  font-size:15px;
-}*/

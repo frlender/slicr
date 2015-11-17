@@ -1,9 +1,9 @@
 {
-	"esUrl":"localhost:9200",
+	"esUrl":"http://146.203.54.71/es",
 	"dbUrl":"mongodb://10.91.53.225/LINCS_L1000_LJP2015",
-	"esIndex":"l1000-2",
+	"esIndex":"l1000",
 	"types":{
-		"level34":"leve34",
+		"level34":"level34",
 		"level5":"level5"
 	}
 }

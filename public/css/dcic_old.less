@@ -25,9 +25,7 @@
 @font-kerning-big: .2em;
 
 
-@border-color:#bbb;
-
-@footer-height:100px;
+@border-color:#bbb;s
 
 
 .theme-color{
@@ -39,55 +37,22 @@
 	font-family: @font-family-base;
 }
 
-
-
 body{
 	font-family: @font-family-base;
-	
-	// height: 100%;
-	// min-height: 100%;
-	// margin: 0;
-	// padding:0;
-}
-
-.search-bar{
-	display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-    align-content: center;
-
-}
-
-.search-bar > *{
-	margin:auto;
 }
 
 .sub-header{
 	font-family: @font-family-accent;
 }
 
-html{
-	// critical for sticky footer
-	position: relative;
-	min-height: 100%;
-}
 
 .footer{
- 	   position: absolute;
- 	   bottom: 0px;
- 	   height: @footer-height;
-       width: 100%;
-       display: flex;
-       flex-flow: row;
-    	justify-content: space-around;
-    	align-content: center;
-}
-
-.footer-wrapper{
-	width:677px;
-	border-top-width: 1px;
+	position: absolute;
+    bottom: 0;
+    height: 100px;
+    border-top-width: 1px;
     border-top-style: solid;
-    border-top-color: #bbbbbb;
+    border-top-color: @border-color;
 
 }
 
@@ -119,18 +84,8 @@ html{
 }
 
 .view{
-	display: flex;
-    flex-flow: row;
-    justify-content: center;
-    align-content: center;
-    margin-bottom: @footer-height+10;
-    flex-wrap:wrap;
-}
-
-.manual{
-	width: 667px;
-	text-align:justify;
-	font-size: 13px;
+	width:667px;
+	white-space:nowrap;
 }
 
 a{
@@ -145,17 +100,4 @@ a.dcic-link{
 a.more-apps{
 	vertical-align: 190%;
     font-size: 0.9em;
-}
-
-.fig {
-    border: solid;
-    border-width: thin;
-    border-color: #bbb;
-    padding: 5px;
-    width: 650px;
-}
-
-.download{
-	flex:1 100%;
-	text-align: center;
 }

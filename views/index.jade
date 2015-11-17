@@ -4,6 +4,7 @@ html(lang='en', ng-app='Lich')
     title 
     link(rel='shortcut icon', href='css/images/?.ico', type='image/x-icon')
     //style
+    link(rel='stylesheet', href='libraries/normalize.css/normalize.css')
     link(rel='stylesheet', href='libraries/font-awesome/css/font-awesome.min.css')
     //- link(rel='stylesheet', type='text/css', href='libraries/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='css/main.css')
@@ -24,18 +25,20 @@ html(lang='en', ng-app='Lich')
     script(src='scripts/services.js')
 
   body(ng-controller='index')
-    div.container
-        div.theme-color-dark
-            img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
-            span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
-            a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
-            a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
+    .search-bar
         div
-            tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
-                auto-complete(min-length=2 source="loadTags($query)")
-            a(ng-click="from=0;search()" href="#/search" class="search") Search                  
-        div(ng-view class="view")
-        .footer.theme-color-dark
+            div.theme-color-dark
+                img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
+                span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
+                a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
+                a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
+            div
+                tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
+                    auto-complete(min-length=2 source="loadTags($query)")
+                a(ng-click="from=0;search()" href="#/search" class="search") Search                  
+    .view(ng-view)
+    .footer.theme-color-dark
+        .footer-wrapper
             a.dcic-link(ng-href="http://lincs-dcic.org/" target="_blank")
                 img.logo(src="css/img/DCIC_500x375_cropped.png")
                 span.title.logo-title

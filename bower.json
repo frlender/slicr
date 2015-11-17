@@ -15,6 +15,7 @@
     "angular-smart-table":"1.4.5",
     "angular-bootstrap-toggle-switch":"0.5.x",
     "ng-tags-input":"3.0.0",
-    "less":"2.5.1 "
+    "less":"2.5.1 ",
+    "normalize.css":"3.0.2"
   }
 }
