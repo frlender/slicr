@@ -1,0 +1,7 @@
+.DEGs-popover
+	.DEGs-popover-title Up Genes
+		a.DEGs-popover-remove.hover-dark(ng-click="item.__upGenes=false")
+			i(class="fa fa-times")
+
+	div
+		textarea(disabled) {{item.upGenes.join('\n')}}

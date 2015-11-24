@@ -1,0 +1,4 @@
+.icon-popover
+	a(title="up genes"  ng-click="openDEGs(type,item,'__upGenes')" ng-if="includeThisIcon(type,'upGenes')").hover-dark <i class="fa fa-hand-o-up"></i>
+	a(title="down genes" ng-click="openDEGs(type,item,'__dnGenes')" ng-if="includeThisIcon(type,'dnGenes')").hover-dark <i class="fa fa-hand-o-down"></i>
+	a(title="download signature" ng-href="{{buildDownloadURL(type,item)}}" ng-if="includeThisIcon(type,'download')").hover-dark <i class="fa fa-download"></i>

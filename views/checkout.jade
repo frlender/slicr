@@ -2,5 +2,26 @@ div(class="download") <a ng-click="download()"> Download </a>
 // add filter rather than using ng-if
 div(ng-repeat="type in types | filter:hasSelected" class='col' ng-style="{'margin-left': $index>0?'3em':'0em'}")
 	div <strong>{{type.name}}</strong>
-	div(ng-repeat="(key,item) in type.selectedItems") {{item.batch}}, {{item.pert}}{{item.dose?(", "+item.dose):''}}                     
-		a(ng-click="type.remove(item)") Remove
+		a.hover-dark.type-icon(title="PCA visualization" ng-if="type.checkoutSelectedCount>2" ng-click="visualizePCA(type)")
+			i.fa.fa-cube
+	table
+		tr(ng-repeat="(key,item) in type.selectedItems" ng-class="{highlight:type.highlight(item)}")
+			td {{item.batch}}
+			td {{item.pert}} 
+			td(ng-if="item.dose") {{item.dose}}
+			td
+				span(uib-popover-template="templateURL.upGenes" popover-animation="false" popover-trigger="none" popover-is-open="item.__upGenes").popover-upGenes
+				span(uib-popover-template="templateURL.dnGenes" popover-animation="false" popover-trigger="none" popover-is-open="item.__dnGenes").popover-dnGenes
+				//- tabindex make a link focusable
+				a.hover-dark(uib-popover-template="templateURL.popover" popover-animation="false" popover-trigger="none",ng-click="openPopover(type,item);$event.stopPropagation();",popover-is-open="item.__popover")
+					i.fa.fa-th-large
+			td <input ng-model="item.__checkoutSelected" type="checkbox" ng-change="countCheckoutSelected(type)">
+			td
+				a(ng-click="type.remove(item)") Remove
+	div.page-option
+		a(ng-click="selectItems(type)") select
+		select(ng-model="type.checkoutView.select.option")
+			option(ng-repeat="option in type.checkoutView.select.options" value="{{option}}") {{option}}
+	//- div(ng-repeat="(key,item) in type.selectedItems") {{item.batch}}, {{item.pert}}{{item.dose?(", "+item.dose):''}}                     
+	//- 	a(ng-click="type.remove(item)") Remove
+

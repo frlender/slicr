@@ -2,7 +2,7 @@ var config = require('config');
 var fs = require('fs');
 var _ = require('underscore');
 
-var genes = fs.readFileSync('data/GEOgenes.json');
+var genes = fs.readFileSync('./data/GEOgenes.json');
 
 genes = JSON.parse(genes);
 

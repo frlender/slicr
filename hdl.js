@@ -4,7 +4,9 @@ var fs = require('fs');
 var archiver = require('archiver');
 var config = require('config');
 var Q = require('q');
-var registry = require('./registry.js');
+var registry = require('./registry/registry-back-end.js');
+var request = require('request');
+
 
 
 var client = new elasticsearch.Client({
@@ -83,4 +85,48 @@ exports.download = function(req,res){
 	});
 	res.attachment('Lich_data.zip');
 	archive.pipe(res);
+}
+
+exports.downloadSingle = function(req,res){
+  var input = {};
+  input.model = req.query['level'];
+  input.itemId = registry[input.model].itemId;
+  input.queryId = req.query['id'];
+  input.projection = {};
+  mongo.downloadSingle(input,function(doc){
+    res.setHeader('Content-Disposition','attachment; filename="'+doc[input.itemId]+'.json"');
+    res.send(JSON.stringify(doc))
+  });
+}
+
+exports.DEGs = function(req,res){
+  var input = {};
+  console.log(req.query);
+  input.model = req.query['level'];
+  input.itemId = registry[input.model].itemId;
+  input.queryId = req.query['id'];
+  input.projection = {upGenes:true,dnGenes:true};
+  mongo.downloadSingle(input,function(doc){
+    res.send(doc);
+  });
+}
+
+var headers = {
+    'User-Agent':       'Super Agent/0.0.1',
+    'Content-Type':     'application/x-www-form-urlencoded'
+}
+var pythonUrl = config.get('pythonUrl'),
+    pcaUrl = pythonUrl+'pca';
+exports.pca = function(req,res){
+  var options = {
+    url: pcaUrl,
+    method:'POST',
+    headers:headers,
+    form:{input:JSON.stringify(req.body)}
+  };
+  console.log(options);
+  request(options,function(err,response,body){
+      console.log(body);
+      res.send(body);
+  });
 }

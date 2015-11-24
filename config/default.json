@@ -1,9 +1,10 @@
 {
-	"esUrl":"http://146.203.54.71/es",
+	"esUrl":"http://10.91.53.89:9200",
 	"dbUrl":"mongodb://10.91.53.225/LINCS_L1000_LJP2015",
 	"esIndex":"l1000",
 	"types":{
 		"level34":"level34",
 		"level5":"level5"
-	}
+	},
+	"pythonUrl":"http://127.0.0.1:5000/"
 }

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var config = require('config');
 var Q = require('q');
-var registry = require('./registry.js');
+var registry = require('./registry/registry-back-end.js');
 
 mongoose.connect(config.get('dbUrl'));
 
@@ -25,3 +25,13 @@ exports.download = function(input){
     }); 
     return deferred.promise;
 }
+
+exports.downloadSingle = function(input,cb){
+  var query = {};
+  query[input.itemId] = input.queryId;
+  var projection = input.projection;
+  models[input.model].findOne(query,projection).lean()
+  .exec(function(err,doc){
+    cb(doc);
+  });
+};

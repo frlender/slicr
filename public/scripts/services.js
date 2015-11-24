@@ -15,3 +15,4 @@ Lich.factory('download',function(){
   		document.body.removeChild(form);
 	}
 });
+

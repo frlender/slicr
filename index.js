@@ -12,6 +12,9 @@ router.use('/',express.static(__dirname + '/public'));
 router.get('/tags',hdl.suggest);
 router.get('/search',hdl.search);
 router.post('/download',urlencodedParser,hdl.download);
+router.get('/DEGs',hdl.DEGs);
+router.get('/downloadSingle',hdl.downloadSingle);
+router.post('/pca',jsonParser,hdl.pca);
 
 app.use('/Lich',router);
 

@@ -1,36 +1,19 @@
+//- change to table
 div(ng-if="(types[0].items&&types[0].items.length>0) && tags.length>0" ng-repeat="type in types" class='col' ng-style="{'margin-left': $index>0?'3em':'0em'}")
 	div <strong>{{type.name}}</strong>
-	div(ng-repeat="item in type.items") {{item.batch}}, {{item.pert}} {{item.dose?(", "+item.dose):''}} <input ng-model="item.__selected" type="checkbox" ng-change="type.toggleSelected(item)"></iput>
-	div
-		a(ng-style="{opacity: type.from>=type.size?1:0}" ng-click="previous(type)" class="previous") previous
-		a(ng-if="(type.from+type.size)<count" ng-click="next(type)" class="next") next
+	table
+		tr(ng-repeat="item in type.items" ng-class="{highlight:type.highlight(item)}")
+			td {{item.batch}}
+			td {{item.pert}} 
+			td(ng-if="item.dose") {{item.dose}}
+			td <input ng-model="item.__selected" type="checkbox" ng-change="type.toggleSelected(item)"></iput>
+	div.page-option
+		a.previous(ng-style="{opacity: type.from>=type.size?1:0}" ng-click="previous(type)" class="previous") previous
+		a.next(ng-if="(type.from+type.size)<count" ng-click="next(type)" class="next") next
+		a(ng-click="selectItems(type)") select
+		select(ng-model="type.searchView.select.option")
+			option(ng-repeat="option in type.searchView.select.options" value="{{option}}") {{option}}
 
 //- if no search results show menu
 div.manual(ng-if="(!(types[0].items&&types[0].items.length>0)) || tags.length==0" )
-	p.first-line 
-		| Lich is a web app that searches for LINCS L1000 gene expression profiles and signatures 
-		| that match user's input parameters. It also features the functionality to 
-		| download selected gene expression profiles or signatures in 
-		| search results as tsv files in a zipped folder. Lich consists of two views: 
-		| the search view and the checkout view.
-	p 
-		| <strong>Search View</strong>: This view will show up after user inputs some parameters 
-		| in the search bar and clicks the search button. It is divided into 
-		| two sections: the Level 3 section and the Level 5 section. LINCS 
-		| L1000 data have multiple levels depending on how much preprocessing has been 
-		| done on the data. The level 3 data are normalized gene expression profiles. 
-		| The level 5 data are differential expression signatures computed from level 3 
-		| replicates. The level 5 signatures in Lich were computed using characteristic 
-		| direction (CD) method and the details of this method can be found <a target="_blank" href="http://www.maayanlab.net/CD/">here</a>. The 
-		| Level 3 and the Level 5 sections display matched entries at corresponding levels.
-	img.fig(ng-src="css/img/search-view.png")
-	br
-	p
-		| <strong>Checkout View</strong>: If a profile or signature is checked in the
-		| search view, a checkout button will appear at the top right corner. Clicking on
-		| the button will bring up the checkout view in place of the search view.
-		| There is a download button at the top of the checkout view and clicking on
-		| that button will download the selected gene expression profiles and signatures as tsv files in a zipped
-		| folder. User can remove any selected entries to fine-tune
-		| the selection.
-	img.fig(ng-src="css/img/checkout-view.png")
+	include ./manual.jade
