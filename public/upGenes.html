@@ -3,5 +3,5 @@
   <div class="DEGs-popover-title">Up Genes<a ng-click="item.__upGenes=false" class="DEGs-popover-remove hover-dark"><i class="fa fa-times"></i></a></div>
   <div>
     <textarea disabled="disabled">{{item.upGenes.join('\n')}}</textarea>
-  </div>
+  </div><a ng-click="enrichr(item.upGenes,type.getName(item)+', up genes')" class="enrichr">En<span>rich</span>r         <i class="fa fa-external-link"></i></a>
 </div>

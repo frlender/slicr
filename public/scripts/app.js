@@ -17,9 +17,9 @@ Lich.config(['$routeProvider',
         templateUrl: 'checkout.html',
         controller: 'checkout'
       }).
-      when('/pca/:typeId', {
-        templateUrl: 'pca.html',
-        controller: 'pca'
+      when('/scatter/:typeId', {
+        templateUrl: 'scatter.html',
+        controller: 'scatter'
       }).
       otherwise({
         redirectTo: '/search'

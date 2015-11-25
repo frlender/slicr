@@ -5,20 +5,31 @@ Lich.value('registry',{
 		highlight:function(item){
 			return false;
 		},
+		getName:function(item){
+			return [item.batch,item.pert,item.dose].join(', ')
+		},
 		"searchView":{
 			select:{
 				// default
-				option:'all',
+				init:'all',
 				options:["all","reverse","none"],
 			}
 		},
 		"checkoutView":{
 			select:{
-				option: 'all',
+				init: 'all',
 				options: ["all","reverse","none"],
 			},
-			popoverIcons:["download"]
+			remove:{
+				init: 'selected',
+				options: ['selected','all']
+			},
+			popoverIcons:["download"],
+			popoverWidth: 22
 		},
+		"scatterView":{
+			route:'pca'
+		}
 	},
 	"level5":{
 		"itemIdKey":"sig_id",
@@ -27,18 +38,29 @@ Lich.value('registry',{
 		highlight:function(item){
 			return item.pvalue<=0.1;
 		},
+		getName:function(item){
+			return [item.batch,item.pert,item.dose].join(', ')
+		},
 		"searchView":{
 			select:{
-				option:'significant',
+				init:'significant',
 				options:["significant","all","reverse","none"]
 			}
 		},
 		"checkoutView":{
 			select:{
-				option:'significant',
+				init:'significant',
 				options:["significant","all","reverse","none"]
 			},
-			popoverIcons:["upGenes","dnGenes","download"]
+			remove:{
+				init: 'selected',
+				options: ['selected','all']
+			},
+			popoverIcons:["upGenes","dnGenes","download",'l1000cds2'],
+			popoverWidth: 82
 		},
+		"scatterView":{
+			route:'mds'
+		}
 	},	
 });

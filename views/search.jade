@@ -11,7 +11,7 @@ div(ng-if="(types[0].items&&types[0].items.length>0) && tags.length>0" ng-repeat
 		a.previous(ng-style="{opacity: type.from>=type.size?1:0}" ng-click="previous(type)" class="previous") previous
 		a.next(ng-if="(type.from+type.size)<count" ng-click="next(type)" class="next") next
 		a(ng-click="selectItems(type)") select
-		select(ng-model="type.searchView.select.option")
+		select(ng-model="type.searchView.select.option" ng-init="type.searchView.select.option = type.searchView.select.init")
 			option(ng-repeat="option in type.searchView.select.options" value="{{option}}") {{option}}
 
 //- if no search results show menu

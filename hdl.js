@@ -115,9 +115,9 @@ var headers = {
     'User-Agent':       'Super Agent/0.0.1',
     'Content-Type':     'application/x-www-form-urlencoded'
 }
-var pythonUrl = config.get('pythonUrl'),
-    pcaUrl = pythonUrl+'pca';
+var pythonUrl = config.get('pythonUrl');
 exports.pca = function(req,res){
+  var pcaUrl = pythonUrl+'pca';
   var options = {
     url: pcaUrl,
     method:'POST',
@@ -128,5 +128,52 @@ exports.pca = function(req,res){
   request(options,function(err,response,body){
       console.log(body);
       res.send(body);
+  });
+}
+
+exports.mds = function(req,res){
+  var url = pythonUrl+'mds';
+  var options = {
+    url: url,
+    method:'POST',
+    headers:headers,
+    form:{input:JSON.stringify(req.body)}
+  };
+  console.log(options);
+  request(options,function(err,response,body){
+      console.log(body);
+      res.send(body);
+  });
+}
+
+var genes = fs.readFileSync('./data/GEOgenes.json');
+genes = JSON.parse(genes);
+var lmGenes = genes.slice(0,978);
+exports.l1000cds2 = function(req,res){
+  var input = {};
+  input.model = req.query['level'];
+  input.itemId = registry[input.model].itemId;
+  input.queryId = req.query['id'];
+  input.projection = {chdirLm:true};
+  mongo.downloadSingle(input,function(doc){
+    var payload = {
+      data:{
+        genes:lmGenes,
+        vals:doc.chdirLm
+      },
+      config:{aggravate:true,searchMethod:"CD",combination:true,
+      "db-version":"cpcd-gse70138-lm-v1.0",share:false},
+      metadata:[{key:"Tag",value:"from Lich"}]
+    }
+    var options = {
+      url: 'http://amp.pharm.mssm.edu/L1000CDS2/queryURLEncoded',
+      method:'POST',
+      headers:headers,
+      form:{input:JSON.stringify(payload)}
+    };
+    request(options,function(err,response,body){
+      body = JSON.parse(body);
+      res.send('http://amp.pharm.mssm.edu/L1000CDS2/#/result/'+body.shareId);
+    });
   });
 }

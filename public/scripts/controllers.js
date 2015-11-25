@@ -126,8 +126,8 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		}
 	}
 }])
-.controller('checkout',['$scope','$http', 'download','$window','$location',
-	function($scope,$http,download,$window,$location){
+.controller('checkout',['$scope','$http', 'download','$window','$location','enrichr',
+	function($scope,$http,download,$window,$location,enrichr){
 
 	$window.onclick = function(event){
 		// click elsewhere to close the icon popover
@@ -136,6 +136,8 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 			$scope.$digest();
 		}
 	}
+
+	$scope.enrichr = enrichr;
 
 	$scope.templateURL = {
 		popover:'popover.html',
@@ -196,6 +198,12 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		return baseURL+'downloadSingle?id='+item[type.itemIdKey]+'&level='+type.id;
 	}
 
+	$scope.getLinkToL1000CDS2 = function(type,item){
+		$http.get(baseURL+'l1000cds2?id='+item[type.itemIdKey]+'&level='+type.id).then(function(res){
+			window.open(res.data)
+		});
+	}
+
 	$scope.includeThisIcon = function(type,icon){
 		if(type.checkoutView.popoverIcons.indexOf(icon)>-1) return true
 		else return false;
@@ -236,6 +244,24 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 
 	}
 
+	$scope.removeItems = function(type){
+		switch(type.checkoutView.remove.option){
+			case 'all':
+				for(var key in type.selectedItems){
+					$scope.remove(type,type.selectedItems[key]);
+				}
+				type.checkoutSelectedCount = 0;
+				break;
+			case 'selected':
+				for(var key in type.selectedItems){
+					if(type.selectedItems[key].__checkoutSelected)
+						$scope.remove(type,type.selectedItems[key]);
+				}
+				type.checkoutSelectedCount = 0;
+				break;
+		}
+	}
+
 	$scope.countCheckoutSelected = function(type){
 		var i = 0;
 		for(var key in type.selectedItems){
@@ -245,31 +271,34 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 	}
 
 	$scope.visualizePCA = function(type){
-		$location.path('/pca/'+type.id);
+		$location.path('/scatter/'+type.id);
 	}
 }])
-.controller('pca',['$scope','$http','$routeParams','$location',
+.controller('scatter',['$scope','$http','$routeParams','$location',
 	function($scope,$http,$routeParams,$location){
 	var type = $scope.types.filter(function(type){return type.id==$routeParams.typeId})[0];
 	if(type.checkoutSelectedCount<3)
 		$location.path('/checkout');
 	else{
-		$scope.pcaInput = {
-			items:[]
+		$scope.scatterInput = {
+			items:[],
+			plotName: type.scatterView.route.toUpperCase()
 		};
 		var IDs = [];
 		for(var key in type.selectedItems){
 			var item = type.selectedItems[key];
-			if(item.__checkoutSelected)
+			if(item.__checkoutSelected){
 				IDs.push(item[type.itemIdKey]);
-			$scope.pcaInput.items.push(item);
+				$scope.scatterInput.items.push(item);
+			}
 		}
 		var payload = {
 			level:type.id,
 			IDs:IDs
 		}
-		$http.post(baseURL+'pca',payload).then(function(res){
-			$scope.pcaInput.scores = res.data;
+		$scope.colorParam = 'perturbation';
+		$http.post(baseURL+type.scatterView.route,payload).then(function(res){
+			$scope.scatterInput.scores = res.data;
 		});
 	}
 }])

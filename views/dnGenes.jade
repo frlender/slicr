@@ -5,3 +5,5 @@
 
 	div
 		textarea(disabled) {{item.dnGenes.join('\n')}}
+	a.enrichr(ng-click="enrichr(item.dnGenes,type.getName(item)+', down genes')") En<span>rich</span>r         
+		i.fa.fa-external-link

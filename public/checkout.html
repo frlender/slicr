@@ -4,10 +4,10 @@
 <div ng-repeat="type in types | filter:hasSelected" ng-style="{'margin-left': $index&gt;0?'3em':'0em'}" class="col">
   <div><strong>{{type.name}}</strong><a title="PCA visualization" ng-if="type.checkoutSelectedCount&gt;2" ng-click="visualizePCA(type)" class="hover-dark type-icon"><i class="fa fa-cube"></i></a></div>
   <table>
-    <tr ng-repeat="(key,item) in type.selectedItems" ng-class="{highlight:type.highlight(item)}">
-      <td>{{item.batch}}</td>
-      <td>{{item.pert}} </td>
-      <td ng-if="item.dose">{{item.dose}}</td>
+    <tr ng-repeat="(key,item) in type.selectedItems">
+      <td ng-class="{highlight:type.highlight(item)}">{{item.batch}}</td>
+      <td ng-class="{highlight:type.highlight(item)}">{{item.pert}} </td>
+      <td ng-class="{highlight:type.highlight(item)}" ng-if="item.dose">{{item.dose}}</td>
       <td><span uib-popover-template="templateURL.upGenes" popover-animation="false" popover-trigger="none" popover-is-open="item.__upGenes" class="popover-upGenes"></span><span uib-popover-template="templateURL.dnGenes" popover-animation="false" popover-trigger="none" popover-is-open="item.__dnGenes" class="popover-dnGenes"></span><a uib-popover-template="templateURL.popover" popover-animation="false" popover-trigger="none" ng-click="openPopover(type,item);$event.stopPropagation();" popover-is-open="item.__popover" class="hover-dark"><i class="fa fa-th-large"></i></a>
       </td>
       <td><input ng-model="item.__checkoutSelected" type="checkbox" ng-change="countCheckoutSelected(type)"></td>
@@ -15,8 +15,11 @@
     </tr>
   </table>
   <div class="page-option"><a ng-click="selectItems(type)">select</a>
-    <select ng-model="type.checkoutView.select.option">
+    <select ng-model="type.checkoutView.select.option" ng-init="type.checkoutView.select.option = type.checkoutView.select.init">
       <option ng-repeat="option in type.checkoutView.select.options" value="{{option}}">{{option}}</option>
+    </select><a ng-click="removeItems(type)" class="remove-items">remove</a>
+    <select ng-model="type.checkoutView.remove.option" ng-init="type.checkoutView.remove.option = type.checkoutView.remove.init">
+      <option ng-repeat="option in type.checkoutView.remove.options" value="{{option}}">{{option}}</option>
     </select>
   </div>
 </div>

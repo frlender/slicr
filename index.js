@@ -12,9 +12,14 @@ router.use('/',express.static(__dirname + '/public'));
 router.get('/tags',hdl.suggest);
 router.get('/search',hdl.search);
 router.post('/download',urlencodedParser,hdl.download);
+
 router.get('/DEGs',hdl.DEGs);
 router.get('/downloadSingle',hdl.downloadSingle);
+router.get('/l1000cds2',hdl.l1000cds2);
+
 router.post('/pca',jsonParser,hdl.pca);
+router.post('/mds',jsonParser,hdl.mds);
+
 
 app.use('/Lich',router);
 

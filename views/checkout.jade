@@ -5,10 +5,10 @@ div(ng-repeat="type in types | filter:hasSelected" class='col' ng-style="{'margi
 		a.hover-dark.type-icon(title="PCA visualization" ng-if="type.checkoutSelectedCount>2" ng-click="visualizePCA(type)")
 			i.fa.fa-cube
 	table
-		tr(ng-repeat="(key,item) in type.selectedItems" ng-class="{highlight:type.highlight(item)}")
-			td {{item.batch}}
-			td {{item.pert}} 
-			td(ng-if="item.dose") {{item.dose}}
+		tr(ng-repeat="(key,item) in type.selectedItems" )
+			td(ng-class="{highlight:type.highlight(item)}") {{item.batch}}
+			td(ng-class="{highlight:type.highlight(item)}") {{item.pert}} 
+			td(ng-class="{highlight:type.highlight(item)}" ng-if="item.dose") {{item.dose}}
 			td
 				span(uib-popover-template="templateURL.upGenes" popover-animation="false" popover-trigger="none" popover-is-open="item.__upGenes").popover-upGenes
 				span(uib-popover-template="templateURL.dnGenes" popover-animation="false" popover-trigger="none" popover-is-open="item.__dnGenes").popover-dnGenes
@@ -20,8 +20,11 @@ div(ng-repeat="type in types | filter:hasSelected" class='col' ng-style="{'margi
 				a(ng-click="type.remove(item)") Remove
 	div.page-option
 		a(ng-click="selectItems(type)") select
-		select(ng-model="type.checkoutView.select.option")
+		select(ng-model="type.checkoutView.select.option" ng-init="type.checkoutView.select.option = type.checkoutView.select.init")
 			option(ng-repeat="option in type.checkoutView.select.options" value="{{option}}") {{option}}
+		a.remove-items(ng-click="removeItems(type)") remove
+		select(ng-model="type.checkoutView.remove.option" ng-init="type.checkoutView.remove.option = type.checkoutView.remove.init")
+			option(ng-repeat="option in type.checkoutView.remove.options" value="{{option}}") {{option}}
 	//- div(ng-repeat="(key,item) in type.selectedItems") {{item.batch}}, {{item.pert}}{{item.dose?(", "+item.dose):''}}                     
 	//- 	a(ng-click="type.remove(item)") Remove
 
