@@ -37,7 +37,7 @@ html(lang='en', ng-app='Lich')
             div.theme-color-dark
                 img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
                 span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
-                a(ng-click="toDefautView()" ng-style="{opacity: isCheckoutView()?1:0 }" class="back") <
+                a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
                 a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
             div
                 tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
@@ -56,5 +56,3 @@ html(lang='en', ng-app='Lich')
                 div <a ng-href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>
             a.more-apps(ng-href="http://lincs-dcic.org/#/resources") More Apps                                  
                 i.fa.fa-external-link 
-
-

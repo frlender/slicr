@@ -33,14 +33,18 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		}
 	});
 
-	$scope.toDefautView = function(){
-		$location.path('/search');
+	$scope.toPreviousView = function(){
+		var view = $location.path();
+		if(view=='/checkout')
+			$location.path('/search');
+		else if(S(view).contains('/scatter'))
+			$location.path('/checkout');
 	}
 	$scope.loadTags = function(typed){
 		return $http.get(baseURL+'tags?typed='+typed);
 	}
-	$scope.isCheckoutView = function() {
-		 return $location.path() == '/checkout';
+	$scope.isNotSearchView = function() {
+		 return $location.path() != '/search';
 	}
 
 	$scope.singleSearch = function(type){
@@ -121,7 +125,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 			case 'significant':
 				type.items.filter(type.highlight).forEach(function(item){
 					selectItem(item);
-				});	
+				});
 				break;
 		}
 	}
@@ -228,7 +232,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 				for(var key in type.selectedItems){
 					type.selectedItems[key].__checkoutSelected = !type.selectedItems[key].__checkoutSelected;
 					if(type.selectedItems[key].__checkoutSelected) i=i+1;
-				}	
+				}
 				type.checkoutSelectedCount = i;
 				break;
 			case 'significant':
