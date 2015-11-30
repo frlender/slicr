@@ -16,16 +16,18 @@ module.exports = function(grunt) {
         }]
       },
         release: {
-            options: {
-              data: {
-                dev:false
-              },
-              pretty: true
-            },
-            files: {
-              "public/index.html":"views/index.jade"
-            }
+        options: {
+          data: {dev:false},
+          pretty: true
         },
+        files: [{
+          expand:true,
+          cwd:"views/",
+          src: ["*.jade"],
+          dest:'public/',
+          ext:'.html'
+        }]
+      }
     },
     watch: {
       "jade:compile":{
@@ -49,7 +51,9 @@ module.exports = function(grunt) {
     uglify:{
       built:{
         files:{
-          "public/dist/main.min.js":['public/scripts/script1.js','public/scripts/script2.js']
+          "public/dist/main.min.js":[
+          'public/scripts/*'
+          ]
         }
       }
     },
@@ -89,7 +93,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
 
   grunt.registerTask('default', ['env:dev','express:dev','watch']);
-  grunt.registerTask('deploy', ['env:product','express:dev','watch']);
+  grunt.registerTask('deploy', ['jade:release','uglify:built','env:product','express:dev','watch']);
 
   grunt.registerTask('release',['jade:release','uglify']);
 

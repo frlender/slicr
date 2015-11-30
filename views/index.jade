@@ -25,11 +25,14 @@ html(lang='en', ng-app='Lich')
     script(src="libraries/highcharts/highcharts-3d.js")
     script(src="libraries/highcharts/modules/exporting.js")
     // scripts
-    script(src='scripts/app.js')
-    script(src='scripts/controllers.js')   
-    script(src='scripts/services.js')
-    script(src='scripts/directive.js')
-    script(src="scripts/registry-front-end.js")
+    if dev
+        script(src='scripts/app.js')
+        script(src='scripts/controllers.js')   
+        script(src='scripts/services.js')
+        script(src='scripts/directive.js')
+        script(src="scripts/registry-front-end.js")
+    else
+        script(src='dist/main.min.js')
 
   body(ng-controller='index')
     .search-bar
