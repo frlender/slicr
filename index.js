@@ -21,6 +21,7 @@ router.post('/pca',jsonParser,hdl.pca);
 router.post('/mds',jsonParser,hdl.mds);
 
 
+
 app.use('/Lich',router);
 
 var port = 7070;

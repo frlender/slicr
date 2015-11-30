@@ -13,6 +13,10 @@ Lich.config(['$routeProvider',
         templateUrl: 'search.html',
         controller: 'search'
       }).
+      when('/search/:tags',{
+        templateUrl: 'search.html',
+        controller: 'search'
+      }).
       when('/checkout', {
         templateUrl: 'checkout.html',
         controller: 'checkout'

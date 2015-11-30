@@ -39,6 +39,8 @@ exports.suggest = function(req,res){
 }
 
 exports.search = function(req,res){
+  res.header('Access-Control-Allow-Origin','*');
+  res.header('Access-Control-Allow-Methods', 'GET');
 	client.search({
   	index: config['esIndex'],
   	type: registry[req.query.type].type,

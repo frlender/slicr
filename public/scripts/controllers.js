@@ -44,7 +44,8 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		return $http.get(baseURL+'tags?typed='+typed);
 	}
 	$scope.isNotSearchView = function() {
-		 return $location.path() != '/search';
+		 var view = $location.path();
+		 return !S(view).contains('/search');
 	}
 
 	$scope.singleSearch = function(type){
@@ -90,7 +91,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		delete type.selectedItems[key];
 	}
 }])
-.controller('search',['$scope', function($scope){
+.controller('search',['$scope', '$routeParams', function($scope, $routeParams){
 	$scope.types.forEach(function(type){
 		if(type.items)
 		type.items.forEach(function(e){
@@ -100,6 +101,13 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 						e.__selected = false;
     	});
 	});
+	if(!$scope.isEmptyObj($routeParams) && $scope.firstParamSearch==undefined){
+		$scope.$parent.tags = $routeParams.tags.split(',').map(function(tag){
+			return {text:tag};
+		});
+		$scope.search();
+		$scope.firstParamSearch = 'searched';
+	}
 	$scope.selectItems = function(type){
 		var selectItem = function(item){
 			item.__selected = true;
