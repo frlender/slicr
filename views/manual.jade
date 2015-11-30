@@ -1,9 +1,9 @@
 p.first-line 
-	| Lich is a web app that searches for LINCS L1000 gene expression profiles and signatures 
-	| that match user's input parameters. It also features the functionality to 
-	| download selected gene expression profiles or signatures in 
-	| search results as tsv files in a zipped folder. Lich consists of two views: 
-	| the search view and the checkout view.
+	| Lich is a search engine that searches for LINCS L1000 gene expression profiles and signatures 
+	| matching user's input parameters. It features
+	| download of selected search results as csv files in a zipped folder and visualization
+	| of selected results in a 3D scatter plot using PCA or MDS. Lich consists of three views: 
+	| the search view, the checkout view and the 3D scatter view.
 p 
 	| <strong>Search View</strong>: This view will show up after user inputs some parameters 
 	| in the search bar and clicks the search button. It is divided into 
@@ -14,14 +14,27 @@ p
 	| replicates. The level 5 signatures in Lich were computed using characteristic 
 	| direction (CD) method and the details of this method can be found <a target="_blank" href="http://www.maayanlab.net/CD/">here</a>. The 
 	| Level 3 and the Level 5 sections display matched entries at corresponding levels.
+	| The highlighted entries in Level 5 section are significant signatures with p-value < 0.1.
 img.fig(ng-src="css/img/search-view.png")
 br
 p
 	| <strong>Checkout View</strong>: If a profile or signature is checked in the
 	| search view, a checkout button will appear at the top right corner. Clicking on
-	| the button will bring up the checkout view in place of the search view.
-	| There is a download button at the top of the checkout view and clicking on
+	| the button will bring up the checkout view.
+	| There is a download button on the below the search bar and clicking on
 	| that button will download the selected gene expression profiles and signatures as tsv files in a zipped
 	| folder. User can remove any selected entries to fine-tune
-	| the selection.
+	| the selection. If more than two  entries in either section are checked, a cube button 
+	| will show up. Clicking the button will visualize the selected entries in a 3D plot.
+	| Clicking on the four-squre button opens a popover of 4 buttons in Level 5 section. 
+	| Clicking on the first two buttons will show up the up and down genes. Clicking on the
+	| next two buttons will download the entry and show consensus signatures in L1000CDS², 
+	| respectively. The popover in Level 3 section only has the download button.
 img.fig(ng-src="css/img/checkout-view.png")
+br
+p
+	| <strong>3D Scatter View</strong>: This view visualizes the selected entries at the 
+	| checkout view in a 3D scatter plot. The distances between the entries in the 3D space | depict the relative similarities among them. For the Leve 3
+	| gene expression profiles PCA is used to calculate the coordinates. For the Level 5
+	| gene expression signatures MDS is used to compute  the positions from the cosine distances between the CD signatures. Clicking on the perturbation, cell, and time point buttons below the figure to color the dots by different parameters. 
+img.fig(ng-src="css/img/scatter.png")
