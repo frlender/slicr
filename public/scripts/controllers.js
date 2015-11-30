@@ -2,7 +2,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 	function($scope,$http,$location,$http,registry){
 
 	$scope.tags = [
-		{text:'A375'},
+		// {text:'A375'},
 		// {text:'3.33um'}
 	];
 	var typeIDs = ['level34','level5']
