@@ -66,7 +66,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 	$scope.search = function(){
 		$scope.types.forEach(function(type){
 			type.from=type.initFrom;
-			type.size = type.initSize;
+			type.size=type.initSize;
 			$scope.singleSearch(type);
 		});
 	}

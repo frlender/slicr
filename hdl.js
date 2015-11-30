@@ -101,7 +101,6 @@ exports.downloadSingle = function(req,res){
 
 exports.DEGs = function(req,res){
   var input = {};
-  console.log(req.query);
   input.model = req.query['level'];
   input.itemId = registry[input.model].itemId;
   input.queryId = req.query['id'];
@@ -124,9 +123,7 @@ exports.pca = function(req,res){
     headers:headers,
     form:{input:JSON.stringify(req.body)}
   };
-  console.log(options);
   request(options,function(err,response,body){
-      console.log(body);
       res.send(body);
   });
 }
@@ -139,9 +136,7 @@ exports.mds = function(req,res){
     headers:headers,
     form:{input:JSON.stringify(req.body)}
   };
-  console.log(options);
   request(options,function(err,response,body){
-      console.log(body);
       res.send(body);
   });
 }
