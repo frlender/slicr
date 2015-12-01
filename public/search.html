@@ -41,20 +41,19 @@
     <strong>Checkout View</strong>: If a profile or signature is checked in the
     search view, a checkout button will appear at the top right corner. Clicking on
     the button will bring up the checkout view.
-    There is a download button on the below the search bar and clicking on
-    that button will download the selected gene expression profiles and signatures as tsv files in a zipped
+    There is a download button at the top of the checkout view that
+    will download gene expression profiles and signatures selected at the search view as tsv files in a zipped
     folder. User can remove any selected entries to fine-tune
-    the selection. If more than two  entries in either section are checked, a cube button 
-    will show up. Clicking the button will visualize the selected entries in a 3D plot.
-    Clicking on the four-squre button opens a popover of 4 buttons in Level 5 section. 
-    Clicking on the first two buttons will show up the up and down genes. Clicking on the
-    next two buttons will download the entry and show consensus signatures in L1000CDS², 
-    respectively. The popover in Level 3 section only has the download button.
+    the selection. If more than two  entries in either section are checked at this view, a cube button 
+    will show up. Clicking on the button will visualize the selected entries in a 3D plot.
+    Clicking on the four-squre button in an entry opens a popover of 4 buttons in level 5 section and of one button in level 3 section. 
+    Clicking on the up/down hands will show the up/down genes. Clicking on the
+    download button will download the entry as a JSON object. Clicking on the green button will show consensus signatures in L1000CDS².
   </p><img ng-src="css/img/checkout-view.png" class="fig"/><br/>
   <p>
     <strong>3D Scatter View</strong>: This view visualizes the selected entries at the 
     checkout view in a 3D scatter plot. The distances between the entries in the 3D space | depict the relative similarities among them. For the Leve 3
     gene expression profiles PCA is used to calculate the coordinates. For the Level 5
-    gene expression signatures MDS is used to compute  the positions from the cosine distances between the CD signatures. Clicking on the perturbation, cell, and time point buttons below the figure to color the dots by different parameters. 
+    gene expression signatures MDS is used to compute  the positions from the cosine distances between the CD signatures. Clicking on the perturbation, cell, and time point buttons will color the dots by corresponding parameters. 
   </p><img ng-src="css/img/scatter.png" class="fig"/>
 </div>
