@@ -11,6 +11,7 @@ body{
 .header{
 	font-size: 3em;
 	cursor: pointer;
+	margin-left:10px;
 }
 
 .sub-header{
@@ -18,9 +19,9 @@ body{
     margin-left: 0.8em;
 }
 
-.lich{
-	width:80px;
-	vertical-align: -100%;
+.app-symbol{
+	width:50px;
+	vertical-align: -40%;
 	cursor: pointer;
 }
 

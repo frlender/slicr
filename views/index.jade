@@ -2,6 +2,7 @@ doctype html
 html(lang='en', ng-app='Lich')
   head
     title 
+    <link rel="icon" href="css/img/favicon.ico">
     link(rel='shortcut icon', href='css/images/?.ico', type='image/x-icon')
     //style
     link(rel='stylesheet', href='libraries/normalize.css/normalize.css')
@@ -37,9 +38,9 @@ html(lang='en', ng-app='Lich')
   body(ng-controller='index')
     .search-bar
         div
-            div.theme-color-dark
-                img(src="css/img/lich.jpg" class="lich" ng-click="toDefautView()")
-                span <span class="header" ng-click="toDefautView()">Lich</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
+            div.theme-color-dark.top-header
+                img(src="css/img/fill.png" class="app-symbol" ng-click="toDefautView()")
+                span <span class="header" ng-click="toDefautView()">Linchr</span>   <span class="sub-header">LINCS L1000 Search (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
                 a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
                 a(ng-if="selectedCount>0" href="#/checkout" class="checkout") checkout {{selectedCount}}
             div

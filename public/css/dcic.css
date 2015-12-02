@@ -12,6 +12,11 @@
 body {
   font-family: 'Arial', sans-serif;
 }
+
+.top-header{
+  margin-top:3px;
+}
+
 .search-bar {
   display: flex;
   flex-flow: column;
