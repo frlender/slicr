@@ -22,7 +22,10 @@ router.post('/mds',jsonParser,hdl.mds);
 
 
 
-app.use('/Linchr',router);
+app.use('/l2s',router);
+app.get('/Lich',function(req,res){
+	res.redirect('/l2s');
+});
 
 var port = 7070;
 app.listen(port,function(){
