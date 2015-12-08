@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Lich">
+  <head>
+    <title> </title>
+    <link rel="icon" href="css/img/pizza-2d.png">
+    <!--style-->
+    <link rel="stylesheet" href="libraries/normalize.css/normalize.css">
+    <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="libraries/ng-tags-input/ng-tags-input.min.css">
+    <link rel="stylesheet" href="css/dcic.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow" rel="stylesheet" type="text/css">
+    <!-- libraries -->
+    <script src="libraries/jquery/jquery.min.js"></script>
+    <script src="libraries/string/lib/string.min.js"></script>
+    <script src="libraries/underscore/underscore-min.js"></script>
+    <script src="libraries/angular/angular.js"></script>
+    <script src="libraries/angular-route/angular-route.min.js"></script>
+    <script src="libraries/angular-animate/angular-animate.min.js">     </script>
+    <script src="versioned/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="libraries/ng-tags-input/ng-tags-input.min.js"></script>
+    <script src="libraries/jquery/jquery.min.js"></script>
+    <script src="libraries/highcharts/highcharts.js"></script>
+    <script src="libraries/highcharts/highcharts-3d.js"></script>
+    <script src="libraries/highcharts/modules/exporting.js"></script>
+    <!-- scripts-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js">  </script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/directive.js"></script>
+    <script src="scripts/registry-front-end.js"></script>
+  </head>
+  <body ng-controller="index">
+    <div class="search-bar">
+      <div>
+        <div class="theme-color-dark top-header"><img src="css/img/pizza.png" ng-click="toDefaultView()" class="app-symbol"><span><span class="header" ng-click="toDefaultView()">Slicer</span>   <span class="sub-header">LINCS L1000 Slicer (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span></span></div>
+      </div>
+    </div>
+    <div class="view">
+      <div class="manual">
+        <p class="first-line">
+           
+          L2S is a search engine that searches for LINCS L1000 gene expression profiles and signatures 
+          matching user's input parameters. It features
+          download of selected search results as csv files in a zipped folder and visualization
+          of selected results in a 3D scatter plot using PCA or MDS. L2S consists of three views: 
+          the search view, the checkout view and the 3D scatter view.
+        </p>
+        <p>
+           
+          <strong>Search View</strong>: This view will show up after user inputs some parameters 
+          in the search bar and clicks the search button. It is divided into 
+          two sections: the Level 3 section and the Level 5 section. LINCS 
+          L1000 data have multiple levels depending on how much preprocessing has been 
+          done on the data. The level 3 data are normalized gene expression profiles. 
+          The level 5 data are differential expression signatures computed from level 3 
+          replicates. The level 5 signatures in L2S were computed using characteristic 
+          direction (CD) method and the details of this method can be found <a target="_blank" href="http://www.maayanlab.net/CD/">here</a>. The 
+          Level 3 and the Level 5 sections display matched entries at corresponding levels.
+          The highlighted entries in Level 5 section are significant signatures with p-value < 0.1.
+        </p><img ng-src="css/img/search-view.png" class="fig"><br>
+        <p>
+          <strong>Checkout View</strong>: If a profile or signature is checked in the
+          search view, a checkout button will appear at the top right corner. Clicking on
+          the button will bring up the checkout view.
+          There is a download button at the top of the checkout view that
+          will download gene expression profiles and signatures selected at the search view as tsv files in a zipped
+          folder. User can remove any selected entries to fine-tune
+          the selection. If more than two  entries in either section are checked at this view, a cube button 
+          will show up. Clicking on the button will visualize the selected entries in a 3D plot.
+          Clicking on the four-squre button in an entry opens a popover of 4 buttons in level 5 section and of one button in level 3 section. 
+          Clicking on the up/down hands will show the up/down genes. Clicking on the
+          download button will download the entry as a JSON object. Clicking on the green button will show consensus signatures in L1000CDS².
+        </p><img ng-src="css/img/checkout-view.png" class="fig"><br>
+        <p>
+          <strong>3D Scatter View</strong>: This view visualizes the selected entries at the 
+          checkout view in a 3D scatter plot. The distances between the entries in the 3D space | depict the relative similarities among them. For the Leve 3
+          gene expression profiles PCA is used to calculate the coordinates. For the Level 5
+          gene expression signatures MDS is used to compute  the positions from the cosine distances between the CD signatures. Clicking on the perturbation, cell, and time point buttons will color the dots by corresponding parameters. 
+        </p><img ng-src="css/img/scatter.png" class="fig">
+      </div>
+    </div>
+    <div class="footer theme-color-dark">
+      <div class="footer-wrapper"><a ng-href="http://lincs-dcic.org/" target="_blank" class="dcic-link"><img src="css/img/DCIC_500x375_cropped.png" class="logo"><span class="title logo-title">
+            <div class="bd2k">BD2K-LINCS</div>
+            <div>Data Coordination <br> Integrattion Center</div></span></a><span class="title lab-title">
+          <div><a class="lab-link" ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan</a> Lab of Computational System Biology</div>
+          <div><a ng-href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a></div></span><a ng-href="http://lincs-dcic.org/#/resources" class="more-apps">More Apps                                  <i class="fa fa-external-link"> </i></a></div>
+    </div>
+  </body>
+</html>

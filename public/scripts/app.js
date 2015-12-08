@@ -25,6 +25,9 @@ Lich.config(['$routeProvider',
         templateUrl: 'scatter.html',
         controller: 'scatter'
       }).
+      when('/help',{
+
+      }).
       otherwise({
         redirectTo: '/search'
       });

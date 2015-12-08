@@ -22,9 +22,9 @@ router.post('/mds',jsonParser,hdl.mds);
 
 
 
-app.use('/l2s',router);
+app.use('/slicer',router);
 app.get('/Lich',function(req,res){
-	res.redirect('/l2s');
+	res.redirect('/slicer');
 });
 
 var port = 7070;

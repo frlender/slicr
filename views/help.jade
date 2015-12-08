@@ -35,19 +35,14 @@ html(lang='en', ng-app='Lich')
         script(src='dist/main.min.js')
 
   body(ng-controller='index')
-    .search-bar(ng-style="hasResults()?{'margin-top':'0px'}:{'margin-top':'200px'}")
+    .search-bar
         div
-            div.theme-color-dark.top-header(ng-style="hasResults()>0?{'margin-top':'0px'}:{'margin-bottom':'13px'}")
+            div.theme-color-dark.top-header
                 img(src="css/img/pizza.png" class="app-symbol" ng-click="toDefaultView()")
                 span <span class="header" ng-click="toDefaultView()">Slicer</span>   <span class="sub-header">LINCS L1000 Slicer (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
-                a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
-                a.checkout(href="#/checkout" ng-class="{'disabled':!hasResults()}")<img ng-src="css/img/cart.png"></img><span ng-if="selectedCount>0" ng-class="{'single-digit':selectedCount<9,'double-digit':selectedCount>9}">{{selectedCount}}</span>
-                a.mannual(href="help.html")<i class="fa fa-question-circle"></i>
-            div
-                tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box")
-                    auto-complete(min-length=2 source="loadTags($query)")
-                a(ng-click="from=0;search()" href="#/search" class="search") Search                  
-    .view(ng-view)
+    div.view
+        div.manual
+            include ./manual.jade
     .footer.theme-color-dark
         .footer-wrapper
             a.dcic-link(ng-href="http://lincs-dcic.org/" target="_blank")

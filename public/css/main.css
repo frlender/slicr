@@ -9,7 +9,7 @@ body{
 }
 
 .header{
-	font-size: 3em;
+	font-size: 2.3em;
 	cursor: pointer;
 	margin-left:10px;
 }
@@ -20,7 +20,7 @@ body{
 }
 
 .app-symbol{
-	width:50px;
+	width:60px;
 	vertical-align: -40%;
 	cursor: pointer;
 }

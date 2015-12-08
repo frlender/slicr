@@ -33,12 +33,23 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		}
 	});
 
+	$scope.$watchCollection('tags',function(newVal,oldVal){
+		if(newVal.length==0)
+			$scope.types.forEach(function(type){
+				type.items = undefined;
+			});
+	});
+
 	$scope.toPreviousView = function(){
 		var view = $location.path();
 		if(view=='/checkout')
 			$location.path('/search');
 		else if(S(view).contains('/scatter'))
 			$location.path('/checkout');
+	}
+
+	$scope.toDefaultView = function(){
+		$location.path('/search');
 	}
 	$scope.loadTags = function(typed){
 		return $http.get(baseURL+'tags?typed='+typed);
@@ -83,6 +94,14 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 	}
 	$scope.isEmptyObj = function(object){ for(var i in object) { return false; } return true; }
 	$scope.hasSelected = function(type) {var object = type.selectedItems; return !$scope.isEmptyObj(object) }
+	$scope.hasResults = function(){
+		var decision = false;
+		$scope.types.forEach(function(type){
+			decision = decision | !!type.items;
+			console.log(type.items,decision);
+		});
+		return decision;
+	}
 	$scope.remove = function(type,item){
 		var key = item[type.itemIdKey];
 		type.selectedItems[key].__selected = false;

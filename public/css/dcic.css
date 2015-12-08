@@ -12,11 +12,6 @@
 body {
   font-family: 'Arial', sans-serif;
 }
-
-.top-header{
-  margin-top:3px;
-}
-
 .search-bar {
   display: flex;
   flex-flow: column;
@@ -32,6 +27,9 @@ body {
 html {
   position: relative;
   min-height: 100%;
+}
+.top-header {
+  margin-top: 5px;
 }
 .footer {
   position: absolute;
@@ -192,4 +190,56 @@ a.enrichr {
 }
 a.enrichr span {
   color: crimson;
+}
+a.cart {
+  background: #599fb7;
+  padding: 2px;
+  border-radius: 2px;
+  padding-right: 6px;
+  color: white;
+  font-size: 0.7em;
+  padding-left: 3px;
+}
+a.cart:hover {
+  background-color: #3593b1;
+}
+i.cart {
+  font-size: 0.8em;
+  vertical-align: 10%;
+}
+i.cart-add {
+  margin-left: 6px;
+  width: 11.2031px;
+}
+a.checkout {
+  text-decoration: none;
+}
+a.checkout img {
+  width: 40px;
+  vertical-align: -35%;
+}
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0;
+}
+a.checkout span {
+  position: relative;
+  top: -5px;
+  font-weight: bold;
+  color: orange;
+}
+a.checkout span.single-digit {
+  left: -17px;
+}
+a.checkout span.double-digit {
+  left: -22px;
+}
+a.mannual {
+  font-size: 1.2em;
+  margin-left: 45px;
+  vertical-align: -8%;
+}
+a.mannual:hover {
+  color: #09505b;
 }
