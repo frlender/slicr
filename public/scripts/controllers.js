@@ -98,7 +98,6 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		var decision = false;
 		$scope.types.forEach(function(type){
 			decision = decision | !!type.items;
-			console.log(type.items,decision);
 		});
 		return decision;
 	}
