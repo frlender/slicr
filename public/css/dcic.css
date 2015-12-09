@@ -221,7 +221,6 @@ a.checkout img {
 a.disabled {
   pointer-events: none;
   cursor: default;
-  opacity: 0;
 }
 a.checkout span {
   position: relative;
