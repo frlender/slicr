@@ -33,12 +33,16 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		}
 	});
 
+	$scope.hasItems = false;
 	$scope.$watchCollection('tags',function(newVal,oldVal){
-		if(newVal.length==0)
-			$scope.types.forEach(function(type){
-				type.items = undefined;
-			});
+		if(newVal.length==0){
+			$scope.hasItems = false;
+		}else
+			$scope.hasItems = true;
 	});
+	$scope.searchTop = function(){
+		return $scope.hasItems || (!S($location.path()).contains('/search'))
+	}
 
 	$scope.toPreviousView = function(){
 		var view = $location.path();
@@ -94,13 +98,14 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 	}
 	$scope.isEmptyObj = function(object){ for(var i in object) { return false; } return true; }
 	$scope.hasSelected = function(type) {var object = type.selectedItems; return !$scope.isEmptyObj(object) }
-	$scope.hasResults = function(){
-		var decision = false;
-		$scope.types.forEach(function(type){
-			decision = decision | !!type.items;
-		});
-		return decision;
-	}
+	// $scope.hasResults = function(){
+	// 	var decision = false;
+	// 	$scope.types.forEach(function(type){
+	// 		decision = decision | !!type.items;
+	// 	});
+	// 	console.log(decision);
+	// 	return decision;
+	// }
 	$scope.remove = function(type,item){
 		var key = item[type.itemIdKey];
 		type.selectedItems[key].__selected = false;
@@ -109,7 +114,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		delete type.selectedItems[key];
 	}
 }])
-.controller('search',['$scope', '$routeParams', function($scope, $routeParams){
+.controller('search',['$scope', '$routeParams', '$location',function($scope, $routeParams, $location){
 	$scope.types.forEach(function(type){
 		if(type.items)
 		type.items.forEach(function(e){
@@ -125,6 +130,7 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		});
 		$scope.search();
 		$scope.firstParamSearch = 'searched';
+		
 	}
 	$scope.selectItems = function(type){
 		var selectItem = function(item){
