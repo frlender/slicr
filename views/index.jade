@@ -38,7 +38,7 @@ html(lang='en', ng-app='Lich')
     .search-bar(ng-style="searchTop()?{'margin-top':'5px'}:{'margin-top':'200px'}")
         div
             div.theme-color-dark.top-header(ng-style="searchTop()?{'margin-top':'0px'}:{'margin-bottom':'13px'}")
-                img(src="css/img/pizza.png" class="app-symbol" ng-click="toDefaultView()")
+                img(src="css/img/pizza2.png" class="app-symbol" ng-click="toDefaultView()")
                 span <span class="header" ng-click="toDefaultView()">Slicer</span>   <span class="sub-header">LINCS L1000 Slicer (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
                 a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
                 a.checkout(href="#/checkout" ng-class="{'disabled':(selectedCount==0)}" ng-style="(selectedCount>0 || hasItems)?{'opacity':1}:{'opacity':0}")<img ng-src="css/img/cart.png"></img><span ng-if="selectedCount>0" ng-class="{'single-digit':selectedCount<9,'double-digit':selectedCount>9}">{{selectedCount}}</span>
