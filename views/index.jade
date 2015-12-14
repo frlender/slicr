@@ -39,24 +39,23 @@ html(lang='en', ng-app='Lich')
         div
             div.theme-color-dark.top-header(ng-style="searchTop()?{'margin-top':'0px'}:{'margin-bottom':'13px'}")
                 img(src="css/img/pizza2.png" class="app-symbol" ng-click="toDefaultView()")
-                span <span class="header" ng-click="toDefaultView()">Slicer</span>   <span class="sub-header">LINCS L1000 Slicer (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
+                span <span class="header" ng-click="toDefaultView()">Slicr</span>   <span class="sub-header">LINCS L1000 Slicr (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
                 a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
                 a.checkout(href="#/checkout" ng-class="{'disabled':(selectedCount==0)}" ng-style="(selectedCount>0 || hasItems)?{'opacity':1}:{'opacity':0}")<img ng-src="css/img/cart.png"></img><span ng-if="selectedCount>0" ng-class="{'single-digit':selectedCount<9,'double-digit':selectedCount>9}">{{selectedCount}}</span>
                 a.mannual(href="help.html")<i class="fa fa-question-circle"></i>
             div
-                tags-input(placeholder="Search a gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box" on-tag-added="from=0;search()" on-tag-removed="from=0;search();")
+                tags-input(placeholder="Search gene expression profile by perturbation, cell-line, time point or dose" ng-model="tags" min-length=2 class="search-box" on-tag-added="from=0;search()" on-tag-removed="from=0;search();")
                     auto-complete(min-length=2 source="loadTags($query)")
                 //- a(ng-click="from=0;search()" href="#/search" class="search") Search                  
     .view(ng-view)
     .footer.theme-color-dark
         .footer-wrapper
             a.dcic-link(ng-href="http://lincs-dcic.org/" target="_blank")
-                img.logo(src="css/img/DCIC_500x375_cropped.png")
+                //- img.logo(src="css/img/DCIC_500x375_cropped.png")
                 span.title.logo-title
-                    .bd2k BD2K-LINCS
-                    div Data Coordination <br> Integrattion Center
+                    .bd2k BD2K-LINCS DCIC
             span.title.lab-title
-                div <a class="lab-link" ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan</a> Lab of Computational System Biology
-                div <a ng-href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>
-            a.more-apps(ng-href="http://lincs-dcic.org/#/resources") More Apps                                  
-                i.fa.fa-external-link 
+                div <a class="lab-link" ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab of Computational Systems Biology</a>,    Copyright 2015.
+                //- div <a ng-href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>
+            //- a.more-apps(ng-href="http://lincs-dcic.org/#/resources") More Apps                                  
+            //-     i.fa.fa-external-link 

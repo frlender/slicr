@@ -27,7 +27,7 @@
 
 @border-color:#bbb;
 
-@footer-height:100px;
+@footer-height:60px;
 
 
 .theme-color{
@@ -85,18 +85,20 @@ html{
        flex-flow: row;
     	justify-content: space-around;
     	align-content: center;
+   	border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #e4e4e4;
+    background: #f2f2f2;
 }
 
 .footer-wrapper{
-	width:677px;
-	border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: #bbbbbb;
+	width:579px;
+	margin-top:20px;
 
 }
 
 .logo{
-	width: 100px;
+	width: 60px;
     margin-top: 15px;
 }
 
@@ -116,11 +118,22 @@ html{
 }
 
 .lab-title{
-	vertical-align: 140%;
+	vertical-align: 80%;
     font-size: 0.85em;
     margin-left: 20px;
     padding-right: 30px;
 }
+
+.lab-link{
+	text-decoration: none;
+    color: @color-primary-dark;
+}
+
+.lab-link:hover{
+	text-decoration: underline;
+	color: @color-primary
+}
+
 
 .view{
 	display: flex;

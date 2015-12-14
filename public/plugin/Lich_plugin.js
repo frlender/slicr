@@ -4,7 +4,7 @@ angular.module('LichPlugin',['ngTagsInput'])
 		restrict:'AE',
 		controller:['$scope','$http',function($scope,$http){
 			var url = 'http://amp.pharm.mssm.edu/slicer/'
-			var url = 'http://localhost:7070/slicer/';
+			// var url = 'http://localhost:7070/slicer/';
 			$scope.tags = [];
 			$scope.loadTags = function(typed){
 				return $http.get(url+'tags?typed='+typed);

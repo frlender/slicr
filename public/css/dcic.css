@@ -34,21 +34,23 @@ html {
 .footer {
   position: absolute;
   bottom: 0px;
-  height: 100px;
+  height: 60px;
   width: 100%;
   display: flex;
   flex-flow: row;
   justify-content: space-around;
   align-content: center;
-}
-.footer-wrapper {
-  width: 677px;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: #bbbbbb;
+  border-top-color: #e4e4e4;
+  background: #f2f2f2;
+}
+.footer-wrapper {
+  width: 579px;
+  margin-top: 20px;
 }
 .logo {
-  width: 100px;
+  width: 60px;
   margin-top: 15px;
 }
 .title {
@@ -63,17 +65,25 @@ html {
   font-size: 0.8em;
 }
 .lab-title {
-  vertical-align: 140%;
+  vertical-align: 80%;
   font-size: 0.85em;
   margin-left: 20px;
   padding-right: 30px;
+}
+.lab-link {
+  text-decoration: none;
+  color: #09505b;
+}
+.lab-link:hover {
+  text-decoration: underline;
+  color: #3593b1;
 }
 .view {
   display: flex;
   flex-flow: row;
   justify-content: center;
   align-content: center;
-  margin-bottom: 110px;
+  margin-bottom: 70px;
   flex-wrap: wrap;
 }
 .manual {
