@@ -53,12 +53,11 @@ html(lang='en', ng-app='Lich')
     .view(ng-view)
     .footer.theme-color-dark
         .footer-wrapper
-            a.dcic-link(ng-href="http://lincs-dcic.org/" target="_blank")
                 //- img.logo(src="css/img/DCIC_500x375_cropped.png")
-                span.title.logo-title
-                    .bd2k BD2K-LINCS DCIC
-            span.title.lab-title
-                div <a class="lab-link" ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab of Computational Systems Biology</a>,    Copyright 2015.
+                span.title.logo-title.bd2k <a ng-href="http://lincs-dcic.org/" target="_blank")>BD2K-LINCS DCIC</a> 
+                span.title.logo-title.bd2k <a ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory" target="_blank">Ma'ayan Lab of Computational Systems Biology</a>
+                span.title.logo-title.bd2k <a ng-href="https://commonfund.nih.gov/idg/overview" target="_blank">KMC-IDG</a>
+            
                 //- div <a ng-href="http://icahn.mssm.edu/">Icahn School of Medicine at Mount Sinai</a>
             //- a.more-apps(ng-href="http://lincs-dcic.org/#/resources") More Apps                                  
             //-     i.fa.fa-external-link 

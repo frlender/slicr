@@ -101,10 +101,22 @@ html{
 }
 
 .footer-wrapper{
-	width:579px;
+	width:540px;
 	margin-top:20px;
-
+	display: flex;
+	justify-content: space-between;
 }
+
+@footer-font-color:#808080;
+
+.bd2k a{
+	color:@footer-font-color;
+}
+
+.bd2k a:hover{
+	text-decoration: underline;
+}
+
 
 .logo{
 	width: 60px;
@@ -122,7 +134,7 @@ html{
 }
 
 .bd2k{
-	color:#808080;
+	color:@footer-font-color;
 	font-size:0.8em;
 }
 
@@ -418,3 +430,4 @@ table tr:nth-child(odd){
 table tr td:last-child{
 	padding-right: 0px;
 }
+

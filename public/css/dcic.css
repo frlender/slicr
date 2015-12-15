@@ -52,8 +52,16 @@ html {
   background: #f2f2f2;
 }
 .footer-wrapper {
-  width: 579px;
+  width: 540px;
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.bd2k a {
+  color: #808080;
+}
+.bd2k a:hover {
+  text-decoration: underline;
 }
 .logo {
   width: 60px;
