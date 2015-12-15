@@ -12,6 +12,7 @@
 @color-primary: #3593b1;
 @color-primary-light: #599fb7;
 @color-primary-dark: #09505b;
+@color-primary-lighter: #4DB3D6;
 
 @color-accent: #D16291;
 /* Unused! */
@@ -48,6 +49,14 @@ body{
 	// min-height: 100%;
 	// margin: 0;
 	// padding:0;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	color:@color-primary-dark;
 }
 
 .search-bar{
@@ -341,4 +350,71 @@ a.mannual{
 
 a.mannual:hover{
 	color:@color-primary-dark;
+}
+
+
+.example-container {
+	text-align: center;
+	margin-top: 20px;
+    font-size: 0.9em;
+}
+.examples-header{
+	font-weight: bold;
+	color:@color-primary-dark;
+}
+.examples{
+	display: flex;
+    justify-content: space-between;
+    width: 210px;
+    margin: auto;
+    margin-top: 6px;
+}
+
+tags-input .tags{
+	border: solid 1px #C7C7C7;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+tags-input .tags .tag-item{
+	background-color: @color-primary-lighter;
+	color:white;
+	background-image: none;
+}
+
+tags-input .tags .tag-item .remove-button{
+	color:white;
+}
+
+tags-input .tags .tag-item.selected{
+	background-color: #F97C7C;
+	color:white;
+	background-image: none;
+}
+
+table tr{
+	border-top-style: dotted;
+    border-top-width: thin;
+}
+
+table{
+	cursor: default;
+}
+
+table tr td{
+	padding-top:2px;
+	padding-bottom: 2px;
+}
+
+table tr:hover{
+	background-color:#EFECEC;
+
+}
+
+table tr:nth-child(odd){
+	// background-color:#EFECEC;
+}
+
+table tr td:last-child{
+	padding-right: 0px;
 }

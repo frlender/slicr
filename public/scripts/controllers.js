@@ -12,6 +12,11 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		return type;
 	});
 
+	$scope.addTag = function(tag){
+		$scope.tags.push({'text':tag});
+		$scope.search();
+	}
+
 	$scope.selectedCount = 0;
 	$scope.types.forEach(function(type,i){
 		type.selectedItems = {};
