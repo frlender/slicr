@@ -39,15 +39,14 @@ html(lang='en', ng-app='Lich')
         div
             div.theme-color-dark.top-header
                 img(src="css/img/pizza2.png" class="app-symbol" ng-click="toDefaultView()")
-                span <span class="header" ng-click="toDefaultView()">Slicer</span>   <span class="sub-header">LINCS L1000 Slicer (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
+                span <span class="header" ng-click="toDefaultView()">Slicr</span>   <span class="sub-header">LINCS L1000 Slicer (<a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only)</span>
     div.view
         div.manual
             include ./manual.jade
     .footer.theme-color-dark
         .footer-wrapper
-            a.dcic-link(ng-href="http://lincs-dcic.org/" target="_blank")
                 //- img.logo(src="css/img/DCIC_500x375_cropped.png")
-                span.title.logo-title
-                    .bd2k BD2K-LINCS DCIC
-            span.title.lab-title
-                div <a class="lab-link" ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory">Ma'ayan Lab of Computational Systems Biology</a>,    Copyright 2015.
+                span.title.logo-title.bd2k <a ng-href="http://lincs-dcic.org/" target="_blank")>BD2K-LINCS DCIC</a> 
+                span.title.logo-title.bd2k <a ng-href="http://icahn.mssm.edu/research/labs/maayan-laboratory" target="_blank">Ma'ayan Lab of Computational Systems Biology</a>
+                span.title.logo-title.bd2k <a ng-href="https://commonfund.nih.gov/idg/overview" target="_blank">KMC-IDG</a>
+    script(src='versioned/google.analytics.js')
