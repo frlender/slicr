@@ -85,7 +85,7 @@ exports.download = function(req,res){
 		});
 		archive.finalize();
 	});
-	res.attachment('Lich_data.zip');
+	res.attachment('Slicr_data.zip');
 	archive.pipe(res);
 }
 

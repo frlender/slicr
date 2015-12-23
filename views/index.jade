@@ -41,7 +41,7 @@ html(lang='en', ng-app='Lich')
                 img(src="css/img/pizza2.png" class="app-symbol" ng-click="toDefaultView()")
                 span <span class="header" ng-click="toDefaultView()">Slicr</span>   <span class="sub-header">LINCS L1000 Slicr &nbsp[ <a target="_blank" href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">GSE70138</a> data only ]</span>
                 a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
-                a.checkout(href="#/checkout" ng-class="{'disabled':(selectedCount==0)}" ng-style="(selectedCount>0 || hasItems)?{'opacity':1}:{'opacity':0}")<img ng-src="css/img/cart.png"></img><span ng-if="selectedCount>0" ng-class="{'single-digit':selectedCount<9,'double-digit':selectedCount>9}">{{selectedCount}}</span>
+                a.checkout(href="#/checkout" ng-class="{'disabled':(selectedCount==0)}" ng-style="(selectedCount>0 || hasItems)?{'opacity':1}:{'opacity':0}")<img ng-src="css/img/cart.png"></img><span ng-if="selectedCount>0" ng-class="{'single-digit':selectedCount<=9,'double-digit':selectedCount>9}">{{selectedCount}}</span>
                 a.mannual(href="help.html")<i class="fa fa-question-circle"></i>
             div
                 tags-input(placeholder='{{searchTop()?"":"Search gene expression profile by perturbation, cell-line, time point or dose"}}' ng-model="tags" min-length=2 class="search-box" on-tag-added="from=0;search()" on-tag-removed="from=0;search();")
