@@ -317,3 +317,11 @@ table tr:hover {
 table tr td:last-child {
   padding-right: 0px;
 }
+.nothing {
+  text-align: center;
+  color: #09505b;
+  margin-top: 3em;
+}
+.nothing-2 {
+  margin-top: 5px;
+}

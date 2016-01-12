@@ -36,6 +36,9 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 			else
 				delete type.selectedItems[item[type.itemIdKey]]
 		}
+		type.hasAnyItem = function(){
+			return type.items && type.items.length>0;
+		}
 	});
 
 	$scope.hasItems = false;
@@ -129,6 +132,11 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 						e.__selected = false;
     	});
 	});
+	$scope.hasAnyItemInTypes = function(){
+		return $scope.types.reduce(function(past,type){
+			return past | type.hasAnyItem()
+		},false)
+	}
 	if(!$scope.isEmptyObj($routeParams) && $scope.firstParamSearch==undefined){
 		$scope.$parent.tags = $routeParams.tags.split(',').map(function(tag){
 			return {text:tag};

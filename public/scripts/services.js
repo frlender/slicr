@@ -53,5 +53,10 @@ Lich.factory('enrichr',function(){
       form.submit();
       document.body.removeChild(form);
     }
+})
+.filter('hasAnyItem',function(){
+  return function(types){
+    return types.filter(function(type){return type.hasAnyItem()})
+  }
 });
 
