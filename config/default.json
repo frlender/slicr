@@ -1,7 +1,5 @@
 {
-	"esUrl":[{"host":"146.203.54.74","port":31000},
-             {"host":"146.203.54.165","port":31000},
-             {"host":"146.203.54.92","port":31000}],
+	"esUrl":"http://146.203.54.71/es",
 	"dbUrl":"mongodb://azu/LINCS_L1000_LJP2015",
 	"esIndex":"l1000",
 	"types":{
