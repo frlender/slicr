@@ -10,7 +10,7 @@ var request = require('request');
 
 
 var client = new elasticsearch.Client({
-  host: config['esUrl'],
+  hosts: config['esUrl'],
   log: 'trace'
 });
 
