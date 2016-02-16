@@ -6,6 +6,8 @@ var config = require('config');
 var Q = require('q');
 var registry = require('./registry/registry-back-end.js');
 var request = require('request');
+var requests = require('./requests.js');
+var genes = fs.readFileSync('./data/GEOgenes.json');
 
 
 
@@ -114,7 +116,7 @@ exports.DEGs = function(req,res){
 
 var headers = {
     'User-Agent':       'Super Agent/0.0.1',
-    'Content-Type':     'application/x-www-form-urlencoded'
+    'Content-Type':     'application/json'
 }
 var pythonUrl = config.get('pythonUrl');
 exports.pca = function(req,res){
@@ -173,4 +175,34 @@ exports.l1000cds2 = function(req,res){
       res.send('http://amp.pharm.mssm.edu/L1000CDS2/#/result/'+body.shareId);
     });
   });
+}
+
+ 
+
+exports.GEN3VA = function(req,res){
+    var level = req.body;
+    var input = {};
+    input.model = level.id;
+    input.itemId = registry[level.id].itemId;
+    input.selectedIds = level.selectedIds;
+    mongo.download(input).then(function(docs){
+      var promises = [];
+      docs.forEach(function(doc){
+        doc.diffexp_method = "chdir";
+        doc.cutoff = 'none';
+        doc.Cell = doc.cell_id;
+        doc.Perturbation = doc.pert_desc;
+        doc.ranked_genes = doc.chdirFull.map(function(val,i){
+           return [genes[i],val]
+        });
+        doc.tags = level.tags;
+        delete doc.chdirFull;
+        delete doc.chdirLm;
+        promises.push(requests.GEN3VA(doc));
+      });
+      Q.all(promises).then(function(responseArr){
+          console.log(responseArr);
+          res.send(responseArr);
+      });
+    });
 }

@@ -216,6 +216,17 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 		download(selected);
 	}
 
+	$scope.uploadToGEN3VA = function(){
+		$scope.types.filter(function(type){return type.id=='level5'}).forEach(function(type){
+			var each = {id:type.id};
+			each.selectedIds = Object.keys(type.selectedItems).filter(function(key){return type.selectedItems[key].__checkoutSelected});
+			each.tags = ['slicr_test'];
+			$http.post(baseURL+'GEN3VA',each).then(function(res){
+				console.log(res.data);
+			});
+		})
+	}
+
 	$scope.openDEGs = function(type,item,key){
 		if(item.upGenes==undefined){
 			$http.get(baseURL+'DEGs?id='+item[type.itemIdKey]+'&level='+type.id)
@@ -252,6 +263,8 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 			window.open(res.data)
 		});
 	}
+
+
 
 	$scope.includeThisIcon = function(type,icon){
 		if(type.checkoutView.popoverIcons.indexOf(icon)>-1) return true
@@ -322,6 +335,8 @@ Lich.controller('index',['$scope','$http', '$location', '$http','registry',
 	$scope.visualizePCA = function(type){
 		$location.path('/scatter/'+type.id);
 	}
+
+
 }])
 .controller('scatter',['$scope','$http','$routeParams','$location',
 	function($scope,$http,$routeParams,$location){

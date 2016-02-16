@@ -2,7 +2,9 @@ div(class="download") <a ng-click="download()"> Download </a>
 // add filter rather than using ng-if
 div(ng-repeat="type in types | filter:hasSelected" class='col' ng-style="{'margin-left': $index>0?'3em':'0em'}")
 	div <strong>{{type.name}}</strong>
-		a.hover-dark.type-icon(title="PCA visualization" ng-if="type.checkoutSelectedCount>2" ng-click="visualizePCA(type)")
+		//- a.hover-dark.type-icon(title="Upload selected signatures to GEN3VA" ng-if="type.checkoutSelectedCount>0" ng-click="uploadToGEN3VA()")
+			i.fa.fa-upload
+		a.hover-dark.type-icon(title="PCA visualization" ng-if="type.checkoutSelectedCount>2 && type.id=='level5'" ng-click="visualizePCA(type)")
 			i.fa.fa-cube
 	table
 		tr(ng-repeat="(key,item) in type.selectedItems" )

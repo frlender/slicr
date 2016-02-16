@@ -106,7 +106,14 @@ Lich.directive('scatter3d',[function(){
             scatter: {
                 width: 1,
                 height: 1,
-                depth: 1
+                depth: 1,
+                marker:{
+                    states:{
+                        hover:{
+                            enabled:false
+                        }
+                    }
+                }
             }
         },
         yAxis: {
@@ -168,12 +175,14 @@ Lich.directive('scatter3d',[function(){
 		scope.$watch('colorParam',function(param,oldParam){
 			if(param!=oldParam){
 				
-				seriesData.forEach(function(datum,i){
-					datum.color = data.items[i].viz.colors[param];
-				});
-				chart.series[0].setData(seriesData,true);
+				// seriesData.forEach(function(datum,i){
+				// 	datum.color = data.items[i].viz.colors[param];
+				// });
+				// chart.series[0].setData(seriesData,true);
 
 				chart.series[0].data.forEach(function(datum,i){
+                    datum.update({fillColor:data.items[i].viz.colors[param],
+                        color:data.items[i].viz.colors[param]});
 					// Due to bug in Highchart, have to force the color update:
 					datum.graphic.attr({ fill: data.items[i].viz.colors[param] })
 				});
