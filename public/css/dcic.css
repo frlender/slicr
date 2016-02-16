@@ -190,7 +190,7 @@ span.popover-dnGenes {
   right: -10px;
 }
 a.type-icon {
-  margin-left: 3px;
+  margin-left: 6px;
 }
 a.previous {
   margin-right: 0.5em;
@@ -288,7 +288,7 @@ tags-input .tags {
   box-shadow: none;
 }
 tags-input .tags .tag-item {
-  background-color: #4db3d6;
+  background-color: #4DB3D6;
   color: white;
   background-image: none;
 }
@@ -324,4 +324,16 @@ table tr td:last-child {
 }
 .nothing-2 {
   margin-top: 5px;
+}
+.param-btn {
+  background-color: #3593b1;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  border: none;
+}
+.param-btn:hover {
+  background-color: #FF8100;
+}
+.param-btn-current {
+  background-color: #FF8100;
 }

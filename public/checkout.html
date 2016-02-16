@@ -2,7 +2,8 @@
 <div class="download"><a ng-click="download()"> Download </a> </div>
 <!-- add filter rather than using ng-if-->
 <div ng-repeat="type in types | filter:hasSelected" ng-style="{'margin-left': $index&gt;0?'3em':'0em'}" class="col">
-  <div><strong>{{type.name}}</strong><a title="PCA visualization" ng-if="type.checkoutSelectedCount&gt;2" ng-click="visualizePCA(type)" class="hover-dark type-icon"><i class="fa fa-cube"></i></a></div>
+  <div><strong>{{type.name}}</strong><a title="PCA visualization" ng-if="type.checkoutSelectedCount&gt;2 &amp;&amp; type.id=='level5'" ng-click="visualizePCA(type)" class="hover-dark type-icon"><i class="fa fa-cube"></i></a>
+  </div>
   <table>
     <tr ng-repeat="(key,item) in type.selectedItems">
       <td ng-class="{highlight:type.highlight(item)}">{{item.batch}}</td>

@@ -19,6 +19,7 @@ router.get('/l1000cds2',hdl.l1000cds2);
 
 router.post('/pca',jsonParser,hdl.pca);
 router.post('/mds',jsonParser,hdl.mds);
+router.post('/GEN3VA',jsonParser,hdl.GEN3VA);
 
 
 
