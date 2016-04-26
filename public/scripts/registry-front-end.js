@@ -1,6 +1,6 @@
 Lich.value('registry',{
 	"level34":{
-		"itemIdKey":"cid",
+		"itemIdKey":"distil_id",
 		"name":"Level 3",
 		highlight:function(item){
 			return false;

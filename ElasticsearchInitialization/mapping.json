@@ -1,0 +1,86 @@
+{
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "analyzer_keyword": {
+            "tokenizer": "keyword",
+            "filter": "lowercase"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "level34":{
+      "properties":{
+        "time":{"type":"string"},
+        "cell":{"type":"string"},
+        "batch":{"type":"string"},
+        "group":{"type":"string"},
+        "pert":{"type":"string"},
+        "dose":{"type":"string"},
+        "pert_id":{
+          "type":"string",
+          "analyzer":"analyzer_keyword"
+        },
+        "distil_id":{
+          "type":"string",
+          "analyzer":"analyzer_keyword"
+        }
+      }
+    },
+     "level5": {
+    "properties": {
+      "time": {
+        "type": "string"
+      },
+      "cell": {
+        "type": "string"
+      },
+      "batch": {
+        "type": "string"
+      },
+      "group": {
+        "type": "string"
+      },
+      "pert": {
+        "type": "string"
+      },
+      "dose": {
+        "type": "string"
+      },
+      "pert_id": {
+        "type": "string",
+        "analyzer": "analyzer_keyword"
+      },
+      "pvalue":{
+        "type":"float",
+        "index": "no"
+      },
+      "sig_id": {
+        "type": "string",
+        "analyzer": "analyzer_keyword"
+      }
+    }
+  },
+    "suggest": {
+      "properties": {
+        "id": {
+          "analyzer": "analyzer_keyword",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "query":{
+            "properties":{
+                 "_all":{
+                    "type":"string"                
+                }           
+            }
+        }
+      }
+    }
+  }
+}

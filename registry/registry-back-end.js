@@ -2,25 +2,25 @@ var config = require('config');
 var fs = require('fs');
 var _ = require('underscore');
 
-var genes = fs.readFileSync('./data/GEOgenes.json');
+var genes = fs.readFileSync('./data/POLgenes.json');
 
 genes = JSON.parse(genes);
 
 module.exports = {
 	level34:{
 		type:config.types.level34,
-		itemId:'cid',
+		itemId:'distil_id',
 		mongodb:{
-			collection:"data",
-			schema:{"cid":String, "CL_Name":String,"SM_Dose":Number,
-    "SM_Name":String,"SM_Dose_Unit":String,"SM_Time":Number,
-    "SM_Time_Unit":String,"vector":Array,"chdirLm":Array,det_plate:String,
-	det_well:String,SM_LINCS_ID:String,SM_Center_Compound_ID:String,SM_Pert_Type:String},
+			collection:"inst",
+			schema:{"distil_id":String, "cell_id":String,"pert_dose":Number,
+    "pert_iname":String,"pert_dose_unit":String,"pert_time":Number,
+    "pert_time_unit":String,"vector":Array,det_plate:String,
+	det_well:String,pert_id:String,pert_mfc_id:String,pert_type:String},
 		},
 		format :function(archive,docs){
-			var metaHeaders = ["cid", "CL_Name", "det_plate", "det_well",
-				"SM_Dose", "SM_Dose_Unit", "SM_LINCS_ID", "SM_Name", 
-				"SM_Center_Compound_ID", "SM_Time", "SM_Time_Unit", "SM_Pert_Type", 
+			var metaHeaders = ["distil_id", "cell_id", "det_plate", "det_well",
+				"pert_dose", "pert_dose_unit", "pert_id", "pert_iname", 
+				"pert_mfc_id", "pert_time", "pert_time_unit", "pert_type", 
 				"batch"];
 			var meta = [];
 			var mat = [];
@@ -55,16 +55,16 @@ module.exports = {
 		type:config.types.level5,
 		itemId:'sig_id',
 		mongodb:{
-			collection:"CD",
+			collection:"cd",
 			schema:{"sig_id":String,"cell_id":String,"pert_dose":Number,
-    "pert_desc":String,"pert_dose_unit":String,"pert_time":Number,
+    "pert_iname":String,"pert_dose_unit":String,"pert_time":Number,
     "pert_time_unit":String,"chdirFull":Array,"sigIdx":Array,pert_id:String,
     replicateCount:Number,pvalue:Number,chdirMeanDistLm:Number,pert_type:String}
 	},
 	format : function(archive,docs){
     // meta file
 	var metaHeaders = ["sig_id","pvalue","replicateCount","cell_id","pert_dose",
-    "pert_desc","pert_dose_unit","pert_time",
+    "pert_iname","pert_dose_unit","pert_time",
     "pert_time_unit","pert_id","pert_type"];
     var meta = [];
 	var matFull = [];

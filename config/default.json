@@ -1,11 +1,11 @@
 {
 	"esUrl":"http://146.203.54.71/es",
-	"dbUrl":"mongodb://azu/LINCS_L1000_LJP2015",
-	"esIndex":"l1000",
+	"dbUrl":"mongodb://azu/L1000_POL",
+	"esIndex":"pol",
 	"types":{
 		"level34":"level34",
 		"level5":"level5"
 	},
-	"pythonUrl":"http://146.203.54.239:31963/",
+	"pythonUrl":"http://localhost:5000/",
 	"GEN3VAUrl":"http://amp.pharm.mssm.edu/g2e/api/extract/upload_gene_list"
 }

@@ -1,7 +1,7 @@
 {
 	"esUrl":"http://146.203.54.71/es",
-	"dbUrl":"mongodb://146.203.54.131/LINCS_L1000_LJP2015",
-	"esIndex":"l1000",
+	"dbUrl":"mongodb://146.203.54.131/L1000_POL",
+	"esIndex":"pol",
 	"types":{
 		"level34":"level34",
 		"level5":"level5"

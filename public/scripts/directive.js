@@ -19,6 +19,10 @@ Lich.directive('scatter3d',[function(){
         time:{
             count:0,
             map:{}
+        },
+        dose:{
+            count:0,
+            map:{}
         }
     };
     var min = {};
@@ -49,11 +53,18 @@ Lich.directive('scatter3d',[function(){
             colorParams.time.map[item.time] = colors[colorParams.time.count]
             colorParams.time.count ++;
         }
+        if(item.dose in colorParams.dose.map)
+            item.viz.colors.dose = colorParams.dose.map[item.dose];
+        else{
+            item.viz.colors.dose = colors[colorParams.dose.count];
+            colorParams.dose.map[item.dose] = colors[colorParams.dose.count]
+            colorParams.dose.count ++;
+        }
         item.viz.data = {
             x:data.scores[i][0],
             y:data.scores[i][1],
             z:data.scores[i][2],
-            name:[item.pert,item.cell,item.time].join(', '),
+            name:[item.pert,item.cell,item.time,item.dose].join(', '),
             color: item.viz.colors.perturbation
         }
         seriesData.push(item.viz.data);
