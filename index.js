@@ -23,10 +23,7 @@ router.post('/GEN3VA',jsonParser,hdl.GEN3VA);
 
 
 
-app.use('/slicr',router);
-app.get('/Lich',function(req,res){
-	res.redirect('/slicr');
-});
+app.use('/polslicr',router);
 
 var port = 7070;
 app.listen(port,function(){
