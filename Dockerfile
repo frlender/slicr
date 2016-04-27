@@ -6,7 +6,7 @@ WORKDIR /home
 
 EXPOSE 7070
 
-CMD git clone -b master http://readonly:systemsbiology@amp.pharm.mssm.edu/gitlab/apps/Lich.git \
+CMD git clone -b POL http://readonly:systemsbiology@amp.pharm.mssm.edu/gitlab/apps/Lich.git \
 	&& cd Lich \
 	&& npm install \
 	&& npm install -g grunt-cli \
