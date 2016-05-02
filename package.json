@@ -9,7 +9,7 @@
     "mongoose":"3.8.x",
     "body-parser":"1.10.0",
     "jade":"1.9.1",
-    "elasticsearch":"5.0.0",
+    "elasticsearch":"11.0.1",
     "archiver":"0.14.4",
     "underscore":"latest",
     "bower":"latest",
