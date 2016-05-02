@@ -39,7 +39,7 @@ html(lang='en', ng-app='Lich')
         div
             div.theme-color-dark.top-header(ng-style="searchTop()?{'margin-top':'0px'}:{'margin-bottom':'13px'}")
                 img(src="css/img/pizza2.png" class="app-symbol" ng-click="toDefaultView()")
-                span <span class="header" ng-click="toDefaultView()">Slicr</span>   <span class="sub-header">LINCS L1000 Slicr &nbsp[ <a target="_blank" href="http://amp.pharm.mssm.edu/lincs-playground/index.php/s/q3CHoZAL46xyg3w">POL</a> data only ]</span>
+                span <span class="header" ng-click="toDefaultView()">Slicr</span>   <span class="sub-header">POL L1000 Slicr &nbsp[ <a target="_blank" href="http://amp.pharm.mssm.edu/lincs-playground/index.php/s/q3CHoZAL46xyg3w">POL</a> data only ]</span>
                 a(ng-click="toPreviousView()" ng-style="{opacity: isNotSearchView()?1:0 }" class="back") <
                 a.checkout(href="#/checkout" ng-class="{'disabled':(selectedCount==0)}" ng-style="(selectedCount>0 || hasItems)?{'opacity':1}:{'opacity':0}")<img ng-src="css/img/cart.png"></img><span ng-if="selectedCount>0" ng-class="{'single-digit':selectedCount<=9,'double-digit':selectedCount>9}">{{selectedCount}}</span>
                 a.mannual(href="help.html")<i class="fa fa-question-circle"></i>
